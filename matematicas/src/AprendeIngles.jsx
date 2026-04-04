@@ -572,6 +572,15 @@ const AprendeIngles = () => {
             </ul>
           </div>
         </div>
+
+        {/* Personaje Místico Flotante - Guía de Idiomas */}
+        <div className="mobile-hide" style={{ position: 'absolute', right: '5%', top: '20vh', animation: 'float 5s ease-in-out infinite' }}>
+          <svg width="200" height="200" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="40" fill="none" stroke="#ec4899" strokeWidth="0.5" strokeDasharray="2 2" />
+            <path d="M30 30 Q 50 10 70 30 L 70 70 Q 50 90 30 70 Z" fill="#ec4899" opacity="0.8" filter="blur(1px)" />
+            <text x="50" y="55" fill="white" fontSize="20" textAnchor="middle" fontWeight="bold">EN</text>
+          </svg>
+        </div>
       </section>
 
       <div style={{ textAlign: 'center', marginTop: '60px' }}>

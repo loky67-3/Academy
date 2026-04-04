@@ -269,6 +269,14 @@ const ProgramacionReact = () => {
             </div>
           </div>
         </div>
+
+        {/* Fénix de React - Decorativo */}
+        <div className="mobile-hide" style={{ position: 'absolute', left: '2%', bottom: '10%', animation: 'float 8s ease-in-out infinite', opacity: 0.6 }}>
+          <svg width="180" height="180" viewBox="0 0 100 100">
+            <path d="M50 10 Q 90 40 50 90 Q 10 40 50 10" fill="none" stroke="#61dbfb" strokeWidth="2" />
+            <circle cx="50" cy="45" r="10" fill="#61dbfb" filter="blur(5px)" />
+          </svg>
+        </div>
       </section>
 
       <div style={{ textAlign: 'center', marginTop: '60px', paddingBottom: '80px' }}>
@@ -345,9 +353,11 @@ const ProgramacionReact = () => {
         .step-container {
           display: flex;
           gap: 40px;
+          gap: 20px;
           margin: 6rem 0;
           text-align: left;
           align-items: flex-start;
+          flex-wrap: wrap;
         }
         .step-number {
           font-size: 12rem;
@@ -356,7 +366,12 @@ const ProgramacionReact = () => {
           line-height: 0.7;
           opacity: 0.1;
           min-width: 180px;
+          min-width: 100px;
           user-select: none;
+        }
+        @media (max-width: 768px) {
+          .step-number { font-size: 6rem; min-width: 60px; }
+          .step-title { font-size: 2rem; }
         }
         .step-title {
           font-size: 3rem;

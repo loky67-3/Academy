@@ -302,6 +302,14 @@ const ProgramacionCPP = () => {
             <button onClick={checkFlash} className="btn-login" style={{ background: '#f43f5e', color: 'white' }}>VERIFICAR</button>
           </div>
         </div>
+
+        {/* Centauro de Bajo Nivel - Decorativo */}
+        <div className="mobile-hide" style={{ position: 'absolute', right: '5%', bottom: '20%', animation: 'float 7s ease-in-out infinite' }}>
+          <svg width="150" height="150" viewBox="0 0 100 100" style={{ filter: 'drop-shadow(0 0 10px #f43f5e)' }}>
+            <rect x="30" y="40" width="40" height="40" fill="#f43f5e" opacity="0.3" />
+            <path d="M10 10 L90 90 M90 10 L10 90" stroke="#f43f5e" strokeWidth="2" />
+          </svg>
+        </div>
       </section>
 
       {/* --- CODING LAB --- */}

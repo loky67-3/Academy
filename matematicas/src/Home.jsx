@@ -86,6 +86,44 @@ const Avatar = ({ type, color = "#0ea5e9", size = 120 }) => {
         <path d="M30 60 L70 60 M30 80 L70 80" stroke="white" strokeWidth="4" />
         <circle cx="50" cy="30" r="5" fill="white" />
       </g>
+    ),
+    dragon: ( // Guardián de Algoritmos
+      <g transform="translate(10,10) scale(0.8)">
+        <path d="M20 80 Q 50 10 80 80 L 50 60 Z" fill="#10b981" filter="drop-shadow(0 0 8px #10b981)" />
+        <path d="M30 50 Q 50 20 70 50" fill="none" stroke="#064e3b" strokeWidth="4" />
+        <circle cx="40" cy="45" r="3" fill="white" />
+        <circle cx="60" cy="45" r="3" fill="white" />
+        <path d="M20 80 L10 95 M80 80 L90 95" stroke="#10b981" strokeWidth="5" strokeLinecap="round" />
+      </g>
+    ),
+    phoenix: ( // Espíritu de React
+      <g transform="translate(10,10) scale(0.8)">
+        <path d="M50 20 Q 90 40 50 90 Q 10 40 50 20" fill="url(#grad-fire)" />
+        <path d="M30 40 Q 0 60 20 80 M70 40 Q 100 60 80 80" stroke="#f43f5e" strokeWidth="4" fill="none" />
+        <circle cx="50" cy="45" r="5" fill="white" />
+        <defs>
+          <linearGradient id="grad-fire" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style={{stopColor:'#fbbf24', stopOpacity:1}} />
+            <stop offset="100%" style={{stopColor:'#f43f5e', stopOpacity:1}} />
+          </linearGradient>
+        </defs>
+      </g>
+    ),
+    kraken: ( // Maestro de Datos (SQL)
+      <g transform="translate(10,10) scale(0.8)">
+        <path d="M30 30 Q 50 10 70 30 L 70 60 Q 50 80 30 60 Z" fill="#0ea5e9" />
+        <path d="M30 60 Q 10 90 30 95 M40 65 Q 40 95 50 90 M60 65 Q 60 95 70 90 M70 60 Q 90 90 70 95" stroke="#0ea5e9" strokeWidth="6" strokeLinecap="round" fill="none" />
+        <circle cx="45" cy="40" r="4" fill="white" />
+        <circle cx="55" cy="40" r="4" fill="white" />
+      </g>
+    ),
+    centaur: ( // Arquitecto C++
+      <g transform="translate(10,10) scale(0.8)">
+        <path d="M30 50 L70 50 L80 90 L20 90 Z" fill="#64748b" />
+        <rect x="40" y="20" width="20" height="30" rx="5" fill="#94a3b8" />
+        <circle cx="50" cy="25" r="10" fill="#cbd5e1" />
+        <path d="M40 35 H60 M70 10 L80 30" stroke="#f43f5e" strokeWidth="4" />
+      </g>
     )
   };
 
@@ -307,7 +345,7 @@ const Home = () => {
         
         <div className="grid-container" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '30px' }}>
           <SubjectShowcase 
-            type="robot" color="#0ea5e9" title="Matemáticas & Álgebra" 
+            type="dragon" color="#10b981" title="Matemáticas & Álgebra" 
             description="Desde la aritmética básica hasta el cálculo avanzado. Domina la X y resuelve el universo."
             image="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=600"
             link="/matematicas"
@@ -325,7 +363,7 @@ const Home = () => {
             link="#"
           />
           <SubjectShowcase 
-            type="explorer" color="#10b981" title="Geometría & Espacio" 
+            type="owl" color="#a855f7" title="Geometría & Espacio" 
             description="Ángulos, volúmenes y trigonometría. Entiende las formas que rigen la arquitectura moderna."
             image="https://images.unsplash.com/photo-1509228468518-180dd4864904?q=80&w=600"
             link="/geometria"
@@ -337,13 +375,13 @@ const Home = () => {
             link="/ingles"
           />
           <SubjectShowcase 
-            type="wizard" color="#61dbfb" title="React Engine" 
+            type="phoenix" color="#f43f5e" title="React Engine" 
             description="Domina el framework más potente del mundo. Hooks, Routing y conexión masiva con Firebase."
             image="https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=600"
             link="/react"
           />
           <SubjectShowcase 
-            type="database" color="#00ff41" title="SQL Master" 
+            type="kraken" color="#0ea5e9" title="SQL Master" 
             description="Arquitectura de bases de datos. Aprende a manipular millones de registros con el poder de las consultas relacionales."
             image="https://images.unsplash.com/photo-1544383023-53f0c674763c?q=80&w=600"
             link="/sql"

@@ -291,6 +291,14 @@ const ProgramacionPython = () => {
             <BigExplanation num="03" title="Funciones con 'def'" text="Definir una tarea repetible es tan fácil como usar 'def'. Es el bloque de construcción de cualquier programa profesional." />
           </div>
         </div>
+
+        {/* Dragón de Python - Decorativo */}
+        <div className="mobile-hide" style={{ position: 'absolute', left: '5%', top: '30vh', animation: 'float 6s ease-in-out infinite' }}>
+          <svg width="160" height="160" viewBox="0 0 100 100" style={{ filter: 'drop-shadow(0 0 15px #ffd43b)' }}>
+            <path d="M20 50 Q 50 10 80 50 T 20 50" fill="none" stroke="#ffd43b" strokeWidth="3" />
+            <circle cx="50" cy="50" r="15" fill="#ffd43b" opacity="0.2" />
+          </svg>
+        </div>
       </section>
 
       {/* --- ADVANCED LOGIC --- */}
