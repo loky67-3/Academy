@@ -28,18 +28,25 @@ body {
   scroll-behavior: smooth;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+
+  /* La Malla de Élite: Doble rejilla neón con viñeta de profundidad */
+  background-image: 
+    linear-gradient(rgba(0, 210, 255, 0.08) 1.5px, transparent 1.5px),
+    linear-gradient(90deg, rgba(0, 210, 255, 0.08) 1.5px, transparent 1.5px),
+    linear-gradient(rgba(0, 210, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 210, 255, 0.03) 1px, transparent 1px),
+    radial-gradient(circle at 50% 50%, rgba(2, 6, 23, 0) 0%, var(--bg-deep) 100%);
+  background-size: 80px 80px, 80px 80px, 20px 20px, 20px 20px, 100% 100%;
+  background-attachment: fixed;
+  background-position: center center;
 }
 
 /* Contenedor Principal con Luces de Fondo */
 .home-container {
   position: relative;
   min-height: 100vh;
-  background-color: var(--bg-deep);
-  /* Efecto de malla/rejilla tecnológica */
-  background-image:
-    radial-gradient(circle at 2px 2px, rgba(14, 165, 233, 0.05) 1px, transparent 0);
-  background-size: 32px 32px;
   overflow: hidden;
+  background: transparent; /* Ahora el fondo real lo tiene el body */
 }
 
 /* Orbes de luz neón flotantes */
