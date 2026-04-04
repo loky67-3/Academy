@@ -218,17 +218,24 @@ const Home = () => {
       <div className="neon-glow-bg" style={{ bottom: '-10%', right: '10%', background: 'radial-gradient(circle, rgba(168, 85, 247, 0.08) 0%, transparent 70%)' }}></div>
       
       <Navbar />
-      
-      <section className="hero-section" style={{ padding: 'clamp(120px, 15vh, 180px) 5% clamp(60px, 10vh, 100px)' }}>
+
+      <div className="scanline"></div>
+
+      <section className="hero-section" style={{ padding: 'clamp(140px, 18vh, 200px) 5% 100px' }}>
         <div className="hero-content">
-          <h1 className="hero-title">
-            Aprende <span className="gradient-text">Matemáticas e Inglés</span> <br /> 
-            de forma rápida y divertida
+          <div className="hero-badge" style={{ background: 'rgba(0, 210, 255, 0.1)', border: '1px solid var(--neon-blue)', padding: '8px 20px', borderRadius: '50px', color: 'var(--neon-blue)', fontSize: '0.8rem', fontWeight: 'bold', marginBottom: '25px', textTransform: 'uppercase', letterSpacing: '2px' }}>
+            CORE ENGINE V2.0 // ONLINE
+          </div>
+          <h1 className="hero-title" style={{ position: 'relative' }}>
+            Domina el <span className="gradient-text">Futuro Digital</span>
+            <div style={{ position: 'absolute', top: '-20px', right: '-40px', opacity: 0.5, transform: 'rotate(15deg)' }} className="mobile-hide">
+              <svg width="60" height="60" viewBox="0 0 100 100"><path d="M10 50 L90 50 M50 10 L50 90" stroke="var(--neon-blue)" strokeWidth="2" opacity="0.3" /></svg>
+            </div>
           </h1>
           
           <p className="hero-subtitle">
-            Potencia tu futuro con habilidades en lógica, idiomas y tecnología.<br/>
-            Aprende con un método diseñado para el éxito absoluto.
+            La convergencia definitiva entre <strong>Ciencia</strong>, <strong>Lógica</strong> y <strong>Código</strong>.<br/>
+            Desbloquea tu potencial con interfaces inmersivas y tutores robóticos.
           </p>
 
           <div className="hero-benefits">
@@ -247,16 +254,19 @@ const Home = () => {
           </div>
 
           <div style={{ marginTop: '25px' }}>
-            <button className="btn-login" style={{ fontSize: '1rem', padding: '0.9rem 2.4rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
-              Empieza ya gratis 
+            <button className="btn-login" style={{ fontSize: '1.1rem', padding: '1.2rem 3rem', display: 'flex', alignItems: 'center', gap: '15px', textTransform: 'uppercase', letterSpacing: '1px' }}>
+              Iniciar Sincronización
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><path d="m9 18 6-6-6-6"/></svg>
             </button>
           </div>
         </div>
 
         {/* Mascota Flotante Hero */}
-        <div className="mobile-hide" style={{ position: 'absolute', right: '5%', top: '20vh', animation: 'float 6s ease-in-out infinite', pointerEvents: 'none' }}>
-          <Avatar type="robot" size={280} color="var(--neon-blue)" />
+        <div className="mobile-hide" style={{ position: 'absolute', right: '8%', top: '22vh', animation: 'float 8s ease-in-out infinite', pointerEvents: 'none' }}>
+          <div style={{ position: 'relative' }}>
+            <div style={{ position: 'absolute', inset: '-20%', background: 'radial-gradient(circle, var(--neon-blue-glow) 0%, transparent 70%)', filter: 'blur(40px)', zIndex: -1 }}></div>
+            <Avatar type="robot" size={320} color="var(--neon-blue)" />
+          </div>
         </div>
       </section>
 

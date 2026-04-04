@@ -342,7 +342,7 @@ const ProgramacionReact = () => {
           padding: 30px;
           background: ${UI.colors.text};
           color: #000;
-          border-top: 1px solid #334155;
+          border-top: solid #334155;
           font-size: 1.15rem;
           font-weight: 500;
           line-height: 1.6;
