@@ -10,7 +10,7 @@ const Avatar = ({ type, color = "#0ea5e9", size = 120 }) => {
         <path d="M50 5 L20 20 L20 60 Q20 90 50 95 Q80 90 80 60 L80 20 Z" fill="#ef4444" stroke="#7f1d1d" strokeWidth="2" />
         <path d="M35 30 L65 30 L70 50 L30 50 Z" fill="#facc15" stroke="#7f1d1d" strokeWidth="1" />
         <rect x="38" y="38" width="8" height="4" rx="2" fill="white" style={{filter: 'drop-shadow(0 0 5px white)'}} />
-        <rect x="54" y="38" width="" height="4" rx="2" fill="white" style={{filter: 'drop-shadow(0 0 5px white)'}} />
+        <rect x="54" y="38" width="8" height="4" rx="2" fill="white" style={{filter: 'drop-shadow(0 0 5px white)'}} />
         <circle cx="50" cy="75" r="10" fill="white" stroke="#38bdf8" strokeWidth="2" style={{filter: 'drop-shadow(0 0 8px #38bdf8)'}} />
         <path d="M10 40 L0 30 M90 40 L100 30" stroke="#ef4444" strokeWidth="4" strokeLinecap="round" />
       </g>
