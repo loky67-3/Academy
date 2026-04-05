@@ -18,7 +18,7 @@ const Avatar = ({ type, color = "#0ea5e9", size = 120 }) => {
     owl: ( // Maestro de Historia
       <g transform="translate(10,10) scale(0.8)">
         <circle cx="50" cy="60" r="38" fill="#a855f7" />
-        <circle cx="35" cy="55" r="14" fill="white" />
+        <circle cx="35" cy="55" r="14" fill="red" />
         <circle cx="65" cy="55" r="14" fill="white" />
         <circle cx="35" cy="55" r="5" fill="#1e293b" />
         <circle cx="65" cy="55" r="5" fill="#1e293b" />
