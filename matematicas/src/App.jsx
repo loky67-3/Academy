@@ -63,7 +63,7 @@ function App() {
         <Route path="/booleanos" element={<Booleanos />} />
         <Route path="/tablas-verdad" element={<TablasVerdad />} />
         <Route path="/condicionales" element={<Condicionales />} />
-        <Route path="/pensamiento-logico" element={<PensamientoLogico />} />
+        <Route path="/pensamiento-logico" element={<PensamientoLogico />} /> {/* Keep existing route */}
         <Route path="/bucles" element={<Bucles />} />
         <Route path="/estructuras-datos" element={<EstructurasDatos />} />
         <Route path="/dom" element={<DominandoDOM />} />

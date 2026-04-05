@@ -61,8 +61,8 @@ const Navbar = () => {
     {
       title: "Lógica y Desarrollo",
       color: "#a855f7", // Purple
-      items: [
-        { to: "/logica", label: "Lógica Booleana", icon: "🧠" },
+      items: [ 
+        { to: "/pensamiento-logico", label: "Pensamiento Lógico Avanzado", icon: "🧠" },
         { to: "/tablas-verdad", label: "Tablas de Verdad", icon: "📋" },
         { to: "/bucles", label: "Ciclos y Bucles", icon: "🔁" },
         { to: "/estructuras-datos", label: "Estructuras", icon: "🏗️" },

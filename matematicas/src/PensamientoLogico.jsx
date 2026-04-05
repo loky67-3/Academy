@@ -316,6 +316,99 @@ const PensamientoLogico = () => {
         </div>
       </section>
 
+      {/* --- TORRE DE HANÓI --- */}
+      <section className="info-section">
+        <h2 className="section-title">El Enigma de la <span className="gradient-text">Torre de Hanói</span></h2>
+        <p className="section-subtitle">Un problema clásico para entender la recursividad: mover discos entre postes.</p>
+        <div className="certificate-section" style={{ gap: '40px', background: 'linear-gradient(rgba(168, 85, 247, 0.05), transparent)', alignItems: 'center' }}>
+          <div className="cert-text" style={{ flex: 1 }}>
+            <h3 style={{ color: '#a855f7', textAlign: 'left', fontSize: '1.8rem' }}>¿Qué es la Torre de Hanói?</h3>
+            <p style={{ color: 'var(--text-secondary)', textAlign: 'left', fontSize: '1.1rem', lineHeight: '1.6' }}>
+              Es un rompecabezas matemático que consiste en tres postes y un número de discos de diferentes tamaños, que pueden deslizarse sobre cualquier poste. El objetivo es mover toda la pila a otro poste, siguiendo estas reglas:
+            </p>
+            <ul style={{ color: 'var(--text-secondary)', textAlign: 'left', fontSize: '1rem', lineHeight: '1.8', marginTop: '10px' }}>
+              <li>🔹 Solo se puede mover un disco a la vez.</li>
+              <li>🔹 Un disco más grande nunca puede colocarse encima de uno más pequeño.</li>
+              <li>🔹 Cada disco debe estar en uno de los tres postes.</li>
+            </ul>
+            <p style={{ color: 'var(--neon-green)', textAlign: 'left', fontSize: '1.1rem', lineHeight: '1.6', marginTop: '15px' }}>
+              Este problema se resuelve elegantemente con la <strong>recursividad</strong>, una técnica donde una función se llama a sí misma.
+            </p>
+          </div>
+          <div style={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
+            <HanoiTowerSVG disks={3} size={250} />
+          </div>
+        </div>
+
+        <div style={{ marginTop: '3rem' }}>
+          <h3 className="section-subtitle" style={{ color: '#a855f7', marginBottom: '2rem' }}>Solución Recursiva en Diferentes Lenguajes:</h3>
+          <div className="benefits-grid">
+            <CodeBlock lang="javascript" color="#fbbf24" code={`function hanoi(n, origen, destino, auxiliar) {\n  if (n === 1) {\n    console.log(\`Mover disco 1 de \${origen} a \${destino}\`);\n    return;\n  }\n  hanoi(n - 1, origen, auxiliar, destino);\n  console.log(\`Mover disco \${n} de \${origen} a \${destino}\`);\n  hanoi(n - 1, auxiliar, destino, origen);\n}`} />
+            <CodeBlock lang="python" color="#0ea5e9" code={`def hanoi(n, origen, destino, auxiliar):\n    if n == 1:\n        print(f"Mover disco 1 de {origen} a {destino}")\n        return\n    hanoi(n - 1, origen, auxiliar, destino)\n    print(f"Mover disco {n} de {origen} a {destino}")\n    hanoi(n - 1, auxiliar, destino, origen)`} />
+            <CodeBlock lang="cpp" color="#ef4444" code={`void hanoi(int n, char origen, char destino, char auxiliar) {\n    if (n == 1) {\n        cout << "Mover disco 1 de " << origen << " a " << destino << endl;\n        return;\n    }\n    hanoi(n - 1, origen, auxiliar, destino);\n    cout << "Mover disco " << n << " de " << origen << " a " << destino << endl;\n    hanoi(n - 1, auxiliar, destino, origen);\n}`} />
+          </div>
+        </div>
+      </section>
+
+      {/* --- ALGORITMOS ESENCIALES --- */}
+      <section className="info-section">
+        <h2 className="section-title">Algoritmos Esenciales: <span className="gradient-text">Tu Caja de Herramientas</span></h2>
+        <p className="section-subtitle">Los algoritmos son recetas para resolver problemas. ¡Domina estos básicos y desbloquea la eficiencia!</p>
+        
+        {/* Búsqueda Binaria */}
+        <div className="certificate-section" style={{ gap: '40px', background: 'linear-gradient(rgba(14, 165, 233, 0.05), transparent)', alignItems: 'center', marginTop: '3rem' }}>
+          <div className="cert-text" style={{ flex: 1 }}>
+            <h3 style={{ color: '#0ea5e9', textAlign: 'left', fontSize: '1.8rem' }}>Búsqueda Binaria (Binary Search)</h3>
+            <p style={{ color: 'var(--text-secondary)', textAlign: 'left', fontSize: '1.1rem', lineHeight: '1.6' }}>
+              Imagina buscar una palabra en un diccionario. No empiezas desde la primera página, ¿verdad? Abres por la mitad, y si no está, descartas la mitad que no sirve. ¡Así funciona la búsqueda binaria!
+            </p>
+            <ul style={{ color: 'var(--text-secondary)', textAlign: 'left', fontSize: '1rem', lineHeight: '1.8', marginTop: '10px' }}>
+              <li>✅ **Eficiente:** Mucho más rápida que buscar uno por uno.</li>
+              <li>⚠️ **Requisito:** ¡La lista debe estar ordenada!</li>
+              <li>💡 **Idea:** Divide y vencerás.</li>
+            </ul>
+          </div>
+          <div style={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
+            <AlgorithmVisualSVG type="binarySearch" items={[2, 5, 8, 10, 12, 15, 20]} target={12} />
+          </div>
+        </div>
+        <CodeBlock lang="python" color="#0ea5e9" code={`def binary_search(arr, target):\n    low = 0\n    high = len(arr) - 1\n    while low <= high:\n        mid = (low + high) // 2\n        if arr[mid] == target:\n            return mid\n        elif arr[mid] < target:\n            low = mid + 1\n        else:\n            high = mid - 1\n    return -1 # No encontrado`} />
+
+        {/* Ordenamiento Burbuja */}
+        <div className="certificate-section" style={{ gap: '40px', background: 'linear-gradient(rgba(239, 68, 68, 0.05), transparent)', alignItems: 'center', marginTop: '3rem' }}>
+          <div className="cert-text" style={{ flex: 1 }}>
+            <h3 style={{ color: '#ef4444', textAlign: 'left', fontSize: '1.8rem' }}>Ordenamiento Burbuja (Bubble Sort)</h3>
+            <p style={{ color: 'var(--text-secondary)', textAlign: 'left', fontSize: '1.1rem', lineHeight: '1.6' }}>
+              Es el algoritmo de ordenamiento más simple. Compara elementos adyacentes y los intercambia si están en el orden incorrecto. Repite esto hasta que no se necesiten más intercambios.
+            </p>
+            <ul style={{ color: 'var(--text-secondary)', textAlign: 'left', fontSize: '1rem', lineHeight: '1.8', marginTop: '10px' }}>
+              <li>🐢 **Simple pero Lento:** Fácil de entender, pero ineficiente para grandes volúmenes de datos.</li>
+              <li>🔄 **Concepto:** Los elementos "más pesados" (grandes) burbujean hacia el final.</li>
+              <li>📚 **Educativo:** Excelente para aprender los fundamentos de los algoritmos de ordenamiento.</li>
+            </ul>
+          </div>
+          <div style={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
+            <AlgorithmVisualSVG type="bubbleSort" items={[64, 34, 25, 12, 22]} />
+          </div>
+        </div>
+        <CodeBlock lang="python" color="#ef4444" code={`def bubble_sort(arr):\n    n = len(arr)\n    for i in range(n - 1):\n        for j in range(0, n - i - 1):\n            if arr[j] > arr[j + 1]:\n                arr[j], arr[j + 1] = arr[j + 1], arr[j] # Intercambio\n    return arr`} />
+      </section>
+
+      {/* --- MENSAJE DE FELICITACIÓN --- */}
+      <section className="info-section" style={{ marginTop: '5rem' }}>
+        <div className="benefit-card" style={{ background: 'linear-gradient(45deg, #10b981, #0ea5e9)', padding: '4rem', borderRadius: '30px', boxShadow: '0 0 50px rgba(16, 185, 129, 0.5)' }}>
+          <h2 style={{ fontSize: '3rem', color: '#020617', fontWeight: '900', marginBottom: '1.5rem' }}>
+            ¡FELICIDADES, ARQUITECTO DE LA LÓGICA!
+          </h2>
+          <p style={{ fontSize: '1.8rem', color: '#020617', lineHeight: '1.6' }}>
+            Has navegado por los intrincados caminos del pensamiento algorítmico, desentrañado la recursividad de Hanói y dominado las estrategias de búsqueda y ordenamiento. Tu mente ahora está calibrada para resolver cualquier desafío.
+          </p>
+          <p style={{ fontSize: '1.2rem', color: '#020617', marginTop: '2rem', fontWeight: 'bold' }}>
+            El equipo de EDUNEON te felicita por tu dedicación y maestría. ¡El futuro de la programación te espera!
+          </p>
+        </div>
+      </section>
+
       <div style={{ textAlign: 'center', marginTop: '40px' }}>
         <button className="btn-login" onClick={() => navigate('/')}>Volver al Inicio</button>
       </div>
