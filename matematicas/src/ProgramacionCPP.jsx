@@ -50,7 +50,7 @@ const MemoryVisual = () => (
       </div>
       <div style={{ fontSize: '3rem' }}>⬅️</div>
       <div style={{ border: '1px solid #f43f5e', padding: '15px', borderRadius: '10px', textAlign: 'center', background: 'rgba(244, 63, 94, 0.1)' }}>
-        <div style={{ fontSize: '0.7rem', color: '#fff' }}>Puntero '*ptr'</div>
+        <div style={{ fontSize: '0.7rem', color: 'red' }}>Puntero '*ptr'</div>
         <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#f43f5e' }}>0x7ffd</div>
         <div style={{ fontSize: '0.8rem', color: '#94a3b8' }}>Apunta a la dirección</div>
       </div>
