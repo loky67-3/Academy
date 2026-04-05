@@ -213,7 +213,7 @@ body::after {
   font-size: clamp(1rem, 2vw, 1.25rem);
   color: var(--text-secondary);
   max-width: 800px;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   line-height: 1.5;
 }
 
