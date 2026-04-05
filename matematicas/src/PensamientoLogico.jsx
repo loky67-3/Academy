@@ -175,7 +175,7 @@ const PensamientoLogico = () => {
   const progress = (points / (exercises.length + 10)) * 100;
 
   return (
-    <div className="home-container" style={{ paddingBottom: '80px' }}>
+    <div className="home-container" style={{ paddingBottom: '80px', backgroundColor: '#020617', color: 'white' }}>
       <Navbar />
 
       <section className="hero-section" style={{ minHeight: 'auto', padding: '140px 10% 40px' }}>
@@ -199,6 +199,7 @@ const PensamientoLogico = () => {
       </section>
 
       <section className="info-section">
+        <h2 className="section-title" style={{ color: 'white' }}>⚡ Desafío Flash Estratégico</h2>
         <div className="benefit-card" style={{ maxWidth: '600px', margin: '0 auto', border: '2px solid #10b981', background: 'rgba(16, 185, 129, 0.05)', textAlign: 'center', padding: '3rem' }}>
           <h2 className="section-title" style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>⚡ Desafío Flash Estratégico</h2>
           <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem' }}>Respuesta rápida: ({flashSolvedCount}/10)</p>
@@ -317,6 +318,7 @@ const PensamientoLogico = () => {
       </section>
 
       {/* --- TORRE DE HANÓI --- */}
+      <h2 className="section-title" style={{ color: 'white' }}>El Enigma de la <span className="gradient-text">Torre de Hanói</span></h2>
       <section className="info-section">
         <h2 className="section-title">El Enigma de la <span className="gradient-text">Torre de Hanói</span></h2>
         <p className="section-subtitle">Un problema clásico para entender la recursividad: mover discos entre postes.</p>
@@ -351,6 +353,7 @@ const PensamientoLogico = () => {
       </section>
 
       {/* --- ALGORITMOS ESENCIALES --- */}
+      <h2 className="section-title" style={{ color: 'white' }}>Algoritmos Esenciales: <span className="gradient-text">Tu Caja de Herramientas</span></h2>
       <section className="info-section">
         <h2 className="section-title">Algoritmos Esenciales: <span className="gradient-text">Tu Caja de Herramientas</span></h2>
         <p className="section-subtitle">Los algoritmos son recetas para resolver problemas. ¡Domina estos básicos y desbloquea la eficiencia!</p>
@@ -395,6 +398,7 @@ const PensamientoLogico = () => {
       </section>
 
       {/* --- MENSAJE DE FELICITACIÓN --- */}
+      <h2 className="section-title" style={{ color: 'white' }}>¡FELICIDADES, ARQUITECTO DE LA LÓGICA!</h2>
       <section className="info-section" style={{ marginTop: '5rem' }}>
         <div className="benefit-card" style={{ background: 'linear-gradient(45deg, #10b981, #0ea5e9)', padding: '4rem', borderRadius: '30px', boxShadow: '0 0 50px rgba(16, 185, 129, 0.5)' }}>
           <h2 style={{ fontSize: '3rem', color: '#020617', fontWeight: '900', marginBottom: '1.5rem' }}>
