@@ -18,6 +18,95 @@ const ProfessorNeon = ({ expression = 'happy', size = 100 }) => (
   </svg>
 );
 
+// --- COMPONENTES AUXILIARES PARA ALGORITMOS ---
+const HanoiTowerSVG = ({ disks = 3, size = 200 }) => {
+  const pegColor = "#94a3b8";
+  const diskColors = ["#ef4444", "#fbbf24", "#10b981", "#0ea5e9", "#a855f7"];
+  const pegWidth = 8;
+  const pegHeight = 100;
+  const baseHeight = 10;
+  const diskHeight = 15;
+  const maxDiskWidth = 80;
+
+  const pegs = [
+    { x: size * 0.2, y: size - baseHeight - pegHeight },
+    { x: size * 0.5, y: size - baseHeight - pegHeight },
+    { x: size * 0.8, y: size - baseHeight - pegHeight },
+  ];
+
+  return (
+    <div style={{ background: 'rgba(0,0,0,0.2)', padding: '1rem', borderRadius: '20px', border: '1px solid var(--glass-border)', textAlign: 'center' }}>
+      <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
+        <rect x="0" y={size - baseHeight} width={size} height={baseHeight} fill={pegColor} />
+        {pegs.map((peg, i) => (
+          <rect key={i} x={peg.x - pegWidth / 2} y={peg.y} width={pegWidth} height={pegHeight} fill={pegColor} />
+        ))}
+        <g>
+          <rect x={pegs[0].x - maxDiskWidth / 2} y={pegs[0].y + pegHeight - diskHeight} width={maxDiskWidth} height={diskHeight} fill={diskColors[2]} rx="3" />
+          <rect x={pegs[0].x - (maxDiskWidth * 0.75) / 2} y={pegs[0].y + pegHeight - 2 * diskHeight} width={maxDiskWidth * 0.75} height={diskHeight} fill={diskColors[1]} rx="3" />
+          <rect x={pegs[0].x - (maxDiskWidth * 0.5) / 2} y={pegs[0].y + pegHeight - 3 * diskHeight} width={maxDiskWidth * 0.5} height={diskHeight} fill={diskColors[0]} rx="3" />
+        </g>
+      </svg>
+      <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', marginTop: '10px' }}>Torre de Hanói (Estado Inicial)</p>
+    </div>
+  );
+};
+
+const CodeBlock = ({ lang, code, color = "#a855f7" }) => (
+  <div style={{ background: '#000000', borderRadius: '15px', border: `2px solid ${color}`, margin: '1rem 0', overflow: 'hidden', textAlign: 'left' }}>
+    <div style={{ background: '#1e293b', padding: '8px 15px', color: color, fontWeight: 'bold', fontSize: '0.8rem' }}>
+      {lang.toUpperCase()}
+    </div>
+    <pre style={{ padding: '15px', margin: 0, color: '#ffffff', fontSize: '0.9rem', fontFamily: 'monospace', overflowX: 'auto' }}>
+      <code>{code}</code>
+    </pre>
+  </div>
+);
+
+const AlgorithmVisualSVG = ({ type, items = [10, 5, 8, 2, 12], target = 8 }) => {
+  const itemWidth = 30;
+  const itemHeightScale = 5;
+  const startX = 20;
+  const startY = 100;
+  const spacing = 5;
+
+  return (
+    <div style={{ background: 'rgba(0,0,0,0.2)', padding: '1rem', borderRadius: '20px', border: '1px solid var(--glass-border)', textAlign: 'center' }}>
+      <svg width="250" height="150" viewBox="0 0 250 150">
+        {type === 'binarySearch' && (
+          <g>
+            <text x="125" y="20" fill="#a855f7" textAnchor="middle" fontSize="12">Binary Search (Sorted)</text>
+            {items.map((item, i) => {
+              const x = startX + i * (itemWidth + spacing);
+              const isTarget = item === target;
+              return (
+                <g key={i}>
+                  <rect x={x} y={startY - item * itemHeightScale} width={itemWidth} height={item * itemHeightScale} fill={isTarget ? "#10b981" : "#0ea5e9"} rx="3" />
+                  <text x={x + itemWidth / 2} y={startY - item * itemHeightScale - 5} fill="white" textAnchor="middle" fontSize="10">{item}</text>
+                </g>
+              );
+            })}
+          </g>
+        )}
+        {type === 'bubbleSort' && (
+          <g>
+            <text x="125" y="20" fill="#ef4444" textAnchor="middle" fontSize="12">Bubble Sort</text>
+            {items.map((item, i) => {
+              const x = startX + i * (itemWidth + spacing);
+              return (
+                <g key={i}>
+                  <rect x={x} y={startY - (item/5) * itemHeightScale} width={itemWidth} height={(item/5) * itemHeightScale} fill="#ef4444" rx="3" />
+                  <text x={x + itemWidth / 2} y={startY - (item/5) * itemHeightScale - 5} fill="white" textAnchor="middle" fontSize="10">{item}</text>
+                </g>
+              );
+            })}
+          </g>
+        )}
+      </svg>
+    </div>
+  );
+};
+
 // Visualizador de Símbolos de Diagrama de Flujo
 const FlowSymbolSVG = ({ type, color = "#0ea5e9", size = 100 }) => {
   const renderSymbol = () => {

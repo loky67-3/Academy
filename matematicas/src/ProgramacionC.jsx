@@ -43,6 +43,111 @@ const MicroSVG = () => (
   </svg>
 );
 
+// --- DIAGRAMA DE FLUJO: BUCLE WHILE NEÓN ---
+const LoopFlowSVG = ({ color = "#ef4444" }) => (
+  <div style={{ background: 'rgba(0,0,0,0.3)', padding: '2rem', borderRadius: '30px', border: `2px solid ${color}`, textAlign: 'center' }}>
+    <svg width="200" height="250" viewBox="0 0 200 250">
+      <rect x="60" y="10" width="80" height="30" rx="15" fill="none" stroke="white" strokeWidth="2" />
+      <text x="100" y="30" fill="white" fontSize="10" textAnchor="middle">INICIO</text>
+      
+      <path d="M100 40 L100 70" stroke={color} strokeWidth="2" markerEnd="url(#arrow)" />
+      
+      {/* Rombo de decisión */}
+      <path d="M100 70 L140 100 L100 130 L60 100 Z" fill="none" stroke={color} strokeWidth="3" />
+      <text x="100" y="105" fill="white" fontSize="9" textAnchor="middle">¿CONDICIÓN?</text>
+
+      {/* Ruta SÍ */}
+      <path d="M100 130 L100 170" stroke="#10b981" strokeWidth="3" markerEnd="url(#arrow)" />
+      <text x="110" y="150" fill="#10b981" fontSize="10">SÍ</text>
+      <rect x="60" y="170" width="80" height="30" fill="none" stroke="#10b981" strokeWidth="2" />
+      <text x="100" y="190" fill="white" fontSize="9" textAnchor="middle">EJECUTAR</text>
+
+      {/* Retorno */}
+      <path d="M60 185 L30 185 L30 100 L60 100" stroke={color} strokeWidth="2" fill="none" strokeDasharray="4" markerEnd="url(#arrow)" />
+
+      {/* Ruta NO */}
+      <path d="M140 100 L170 100 L170 220 L100 220" stroke="#ef4444" strokeWidth="2" fill="none" markerEnd="url(#arrow)" />
+      <text x="155" y="90" fill="#ef4444" fontSize="10">NO</text>
+      <rect x="60" y="210" width="80" height="25" rx="12" fill="none" stroke="white" strokeWidth="2" />
+      <text x="100" y="227" fill="white" fontSize="10" textAnchor="middle">FIN</text>
+      
+      <defs><marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="context-stroke" /></marker></defs>
+    </svg>
+    <p style={{ color: color, fontSize: '0.9rem', fontWeight: 'bold', marginTop: '10px' }}>LÓGICA DE ITERACIÓN</p>
+  </div>
+);
+
+// --- VISUAL DE MONITOR DE HARDWARE ---
+const HardwareDisplaySVG = () => (
+  <svg width="220" height="140" viewBox="0 0 220 140">
+    <rect x="10" y="10" width="200" height="120" rx="10" fill="#000" stroke="#ef4444" strokeWidth="4" />
+    <path d="M30 70 Q 60 30 90 70 T 150 70" fill="none" stroke="#ef4444" strokeWidth="2" opacity="0.5">
+      <animate attributeName="stroke-dasharray" from="0, 200" to="200, 0" dur="3s" repeatCount="indefinite" />
+    </path>
+    <text x="110" y="110" fill="#ef4444" fontSize="12" textAnchor="middle" fontFamily="monospace">TEMP: 45.2 C</text>
+  </svg>
+);
+
+// --- DIAGRAMA DE FLUJO: PROGRAMA C BÁSICO ---
+const CProgramFlowSVG = ({ color = "#ef4444" }) => (
+  <div style={{ background: 'rgba(0,0,0,0.3)', padding: '3rem', borderRadius: '40px', border: `2px solid ${color}`, textAlign: 'center', margin: '2rem 0' }}>
+    <h3 style={{ color: color, fontSize: '1.8rem', marginBottom: '2rem' }}>FLUJO DE UN PROGRAMA C</h3>
+    <svg width="100%" height="450" viewBox="0 0 300 450">
+      {/* INICIO */}
+      <rect x="100" y="10" width="100" height="40" rx="20" fill="none" stroke="white" strokeWidth="3" />
+      <text x="150" y="35" fill="white" fontSize="14" textAnchor="middle" fontWeight="bold">INICIO</text>
+      <path d="M150 50 L150 80" stroke={color} strokeWidth="3" markerEnd="url(#arrowC)" />
+
+      {/* ENTRADA DE DATOS */}
+      <path d="M120 80 L180 80 L200 120 L100 120 Z" fill="none" stroke="#fbbf24" strokeWidth="3" />
+      <text x="150" y="105" fill="white" fontSize="12" textAnchor="middle">scanf("...");</text>
+      <path d="M150 120 L150 150" stroke={color} strokeWidth="3" markerEnd="url(#arrowC)" />
+
+      {/* DECISIÓN (IF) */}
+      <path d="M150 150 L220 190 L150 230 L80 190 Z" fill="none" stroke={color} strokeWidth="3" />
+      <text x="150" y="195" fill="white" fontSize="12" textAnchor="middle">¿CONDICIÓN?</text>
+
+      {/* RAMA SÍ */}
+      <path d="M220 190 L250 190 L250 260" stroke="#10b981" strokeWidth="3" markerEnd="url(#arrowC)" />
+      <text x="235" y="180" fill="#10b981" fontSize="12">SÍ</text>
+      <rect x="200" y="260" width="100" height="40" fill="none" stroke="#10b981" strokeWidth="3" />
+      <text x="250" y="285" fill="white" fontSize="12" textAnchor="middle">printf("VERDAD");</text>
+
+      {/* RAMA NO */}
+      <path d="M80 190 L50 190 L50 260" stroke="#fbbf24" strokeWidth="3" markerEnd="url(#arrowC)" />
+      <text x="65" y="180" fill="#fbbf24" fontSize="12">NO</text>
+      <rect x="0" y="260" width="100" height="40" fill="none" stroke="#fbbf24" strokeWidth="3" />
+      <text x="50" y="285" fill="white" fontSize="12" textAnchor="middle">printf("FALSO");</text>
+
+      {/* UNIÓN DE RAMAS */}
+      <path d="M250 300 L250 330 L150 330 L150 360" stroke={color} strokeWidth="3" markerEnd="url(#arrowC)" />
+      <path d="M50 300 L50 330 L150 330" stroke={color} strokeWidth="3" />
+
+      {/* FIN */}
+      <rect x="100" y="360" width="100" height="40" rx="20" fill="none" stroke="white" strokeWidth="3" />
+      <text x="150" y="385" fill="white" fontSize="14" textAnchor="middle" fontWeight="bold">FIN</text>
+      
+      <defs>
+        <marker id="arrowC" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="context-stroke" />
+        </marker>
+      </defs>
+    </svg>
+    <p style={{ color: color, fontSize: '1.2rem', fontWeight: 'bold', marginTop: '20px' }}>DIAGRAMA DE FLUJO BÁSICO</p>
+  </div>
+);
+
+// --- VISUAL DE MONITOR DE HARDWARE ---
+const HardwareDisplaySVG = () => (
+  <svg width="220" height="140" viewBox="0 0 220 140">
+    <rect x="10" y="10" width="200" height="120" rx="10" fill="#000" stroke="#ef4444" strokeWidth="4" />
+    <path d="M30 70 Q 60 30 90 70 T 150 70" fill="none" stroke="#ef4444" strokeWidth="2" opacity="0.5">
+      <animate attributeName="stroke-dasharray" from="0, 200" to="200, 0" dur="3s" repeatCount="indefinite" />
+    </path>
+    <text x="110" y="110" fill="#ef4444" fontSize="12" textAnchor="middle" fontFamily="monospace">TEMP: 45.2 C</text>
+  </svg>
+);
+
 // --- BLOQUE DE CÓDIGO CON FLECHAS NEÓN ---
 const CCode = ({ title, code, annotations = [] }) => (
   <div style={{ background: '#000', borderRadius: '25px', border: '3px solid #ef4444', margin: '3rem 0', position: 'relative', overflow: 'hidden' }}>
@@ -155,6 +260,69 @@ const ProgramacionC = () => {
         </div>
       </section>
 
+      {/* --- HARDWARE INTERFACE SECTION --- */}
+      <section className="info-section">
+        <div style={{ display: 'flex', gap: '50px', background: 'rgba(239, 68, 68, 0.02)', padding: '3rem', borderRadius: '40px', border: '1px dashed #ef4444', alignItems: 'center', flexWrap: 'wrap' }}>
+          <div style={{ flex: 1, textAlign: 'left' }}>
+            <h2 style={{ fontSize: '2.5rem', fontWeight: '900', color: '#fff' }}>INTERFAZ DE <span style={{ color: '#ef4444' }}>SALIDA</span></h2>
+            <p style={{ fontSize: '1.2rem', color: '#94a3b8', lineHeight: '1.6' }}>
+              En C, no solo imprimes texto. Controlas registros de memoria que encienden píxeles en una pantalla o mueven servomotores. Todo es una corriente de datos binarios.
+            </p>
+          </div>
+          <div style={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
+            <HardwareDisplaySVG />
+          </div>
+        </div>
+      </section>
+
+      {/* --- MÉTODO DE FLUJO --- */}
+      <section className="info-section">
+        <h2 style={{ fontSize: '4.5rem', fontWeight: '900', textAlign: 'left', marginTop: '6rem' }}>EL MÉTODO DE <span style={{ color: '#ef4444' }}>FLUJO</span></h2>
+        <p style={{ fontSize: '1.8rem', color: '#94a3b8', textAlign: 'left', marginBottom: '4rem' }}>
+          Antes de escribir una sola línea de código C, visualiza el camino que tomará tu programa.
+        </p>
+        
+        <div style={{ display: 'flex', gap: '60px', alignItems: 'center', flexWrap: 'wrap' }}>
+          <div style={{ flex: 1.5, textAlign: 'left' }}>
+            <h3 style={{ color: '#ef4444', fontSize: '2.5rem', marginBottom: '1.5rem' }}>¿Qué es un Diagrama de Flujo?</h3>
+            <p style={{ fontSize: '1.5rem', color: '#fff', lineHeight: '1.6' }}>
+              Es un mapa visual que representa la secuencia de pasos, decisiones y operaciones que tu programa C realizará.
+              Es tu plano de ingeniería antes de construir el circuito.
+            </p>
+            <ul style={{ color: '#94a3b8', fontSize: '1.2rem', lineHeight: '2', marginTop: '2rem' }}>
+              <li>✅ **Claridad:** Entiende la lógica de un vistazo.</li>
+              <li>🐛 **Debugging:** Encuentra errores antes de compilar.</li>
+              <li>🤝 **Comunicación:** Explica tu código a otros ingenieros.</li>
+            </ul>
+          </div>
+          <div style={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
+            <CProgramFlowSVG />
+          </div>
+        </div>
+
+        <div style={{ marginTop: '5rem' }}>
+          <h3 style={{ color: '#ef4444', fontSize: '2.5rem', marginBottom: '2rem', textAlign: 'left' }}>Símbolos Clave en C</h3>
+          <div className="benefits-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '30px' }}>
+            <div className="benefit-card" style={{ textAlign: 'left', border: '2px solid #fff' }}>
+              <h4 style={{ color: '#fff', fontSize: '1.8rem' }}>INICIO / FIN</h4>
+              <p style={{ color: '#94a3b8' }}>Óvalos. Marcan el principio y el final de `main()`.</p>
+            </div>
+            <div className="benefit-card" style={{ textAlign: 'left', border: '2px solid #fbbf24' }}>
+              <h4 style={{ color: '#fbbf24', fontSize: '1.8rem' }}>ENTRADA / SALIDA</h4>
+              <p style={{ color: '#94a3b8' }}>Paralelogramos. Para `scanf()` (leer) y `printf()` (mostrar).</p>
+            </div>
+            <div className="benefit-card" style={{ textAlign: 'left', border: '2px solid #ef4444' }}>
+              <h4 style={{ color: '#ef4444', fontSize: '1.8rem' }}>DECISIÓN</h4>
+              <p style={{ color: '#94a3b8' }}>Rombos. Para `if`, `else if`, `else` y `switch`.</p>
+            </div>
+            <div className="benefit-card" style={{ textAlign: 'left', border: '2px solid #10b981' }}>
+              <h4 style={{ color: '#10b981', fontSize: '1.8rem' }}>PROCESO</h4>
+              <p style={{ color: '#94a3b8' }}>Rectángulos. Cualquier cálculo o asignación de variable.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* --- VARIABLES --- */}
       <section className="info-section">
         <BigExplanation 
@@ -175,32 +343,61 @@ const ProgramacionC = () => {
 
       {/* --- CONTROL DE FLUJO --- */}
       <section className="info-section" style={{ background: '#000', padding: '5rem', borderRadius: '50px', border: '2px solid #334155' }}>
-        <h2 style={{ fontSize: '4rem', fontWeight: '900', marginBottom: '4rem' }}>FLUJO DE <span style={{ color: '#ef4444' }}>CONTROL</span></h2>
+        <h2 style={{ fontSize: '4.5rem', fontWeight: '900', marginBottom: '4rem', textAlign: 'left' }}>FLUJO DE <span style={{ color: '#ef4444' }}>CONTROL</span></h2>
         
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '50px' }}>
-          <div>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(450px, 1fr))', gap: '60px' }}>
+          <div style={{ textAlign: 'left' }}>
             <h3 style={{ color: '#ef4444', fontSize: '2rem', textAlign: 'left' }}>IF / ELSE</h3>
+            <p style={{ color: '#94a3b8', fontSize: '1.1rem', marginBottom: '1rem' }}>La bifurcación fundamental. El cerebro elige un camino basado en un sensor.</p>
             <CCode 
               title="decision.c"
               code={`if (sensor > 50) {\n    mover_robot();\n} else {\n    detener();\n}`}
+              annotations={[
+                { top: '25px', text: 'Evalúa la condición' },
+                { top: '75px', text: 'Acción si es VERDAD' }
+              ]}
             />
           </div>
           <div>
             <h3 style={{ color: '#ef4444', fontSize: '2rem', textAlign: 'left' }}>WHILE LOOP</h3>
+            <p style={{ color: '#94a3b8', fontSize: '1.1rem', marginBottom: '1rem' }}>Repetición infinita o controlada. Ideal para mantener el motor encendido.</p>
             <CCode 
               title="bucle.c"
               code={`while (energia > 0) {\n    trabajar();\n    energia--;\n}`}
+              annotations={[
+                { top: '25px', text: 'Repite mientras sea cierto' },
+                { top: '75px', text: '¡Evita bucles infinitos!' }
+              ]}
             />
           </div>
+        </div>
+        <div style={{ marginTop: '40px', display: 'flex', justifyContent: 'center' }}>
+          <LoopFlowSVG />
         </div>
       </section>
 
       {/* --- FUNCTIONS --- */}
       <section className="info-section">
         <BigExplanation 
-          num="02" title="Funciones" 
-          text="Las funciones son bloques de construcción. En C, siempre empezamos en la función 'main'. Es el corazón de tu programa." 
+          num="02" title="Anatomía de una Función" 
+          text="No repitas código. Una función es una 'sub-máquina' que recibe datos, los procesa y devuelve un resultado al sistema central." 
         />
+        
+        <div className="grid-container" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '20px', marginBottom: '3rem' }}>
+          <div className="benefit-card" style={{ textAlign: 'left' }}>
+            <h4 style={{ color: '#ef4444' }}>Tipo de Retorno</h4>
+            <p>Define qué sale: <b>int</b> (número), <b>void</b> (nada), <b>float</b> (decimal).</p>
+          </div>
+          <div className="benefit-card" style={{ textAlign: 'left' }}>
+            <h4 style={{ color: '#ef4444' }}>Parámetros</h4>
+            <p>Los datos que la función necesita para trabajar. Se definen entre paréntesis.</p>
+          </div>
+          <div className="benefit-card" style={{ textAlign: 'left' }}>
+            <h4 style={{ color: '#ef4444' }}>Cuerpo {'{ }'}</h4>
+            <p>El código encerrado entre llaves que realiza la magia.</p>
+          </div>
+        </div>
+
         <CCode 
           title="main.c"
           code={`#include <stdio.h>\n\nvoid saludar() {\n    printf("¡Hola, Mundo!");\n}\n\nint main() {\n    saludar();\n    return 0;\n}`}
@@ -210,6 +407,16 @@ const ProgramacionC = () => {
             { top: '125px', text: 'Punto de entrada vital' }
           ]}
         />
+      </section>
+
+      {/* --- ESTRUCTURA DE ARCHIVO --- */}
+      <section className="info-section">
+        <h2 style={{ fontSize: '3rem', fontWeight: '900', color: '#fff', textAlign: 'left' }}>JERARQUÍA DEL <span style={{ color: '#ef4444' }}>ARCHIVO</span></h2>
+        <div className="benefit-card" style={{ background: '#000', textAlign: 'left', border: '1px solid #334155' }}>
+          <pre style={{ fontSize: '1.5rem', color: '#ef4444', lineHeight: '1.8' }}>
+            {`1. #include <stdio.h>   // BIBLIOTECAS\n2. #define MAX 100       // MACROS\n3. int global_var;       // VARIABLES GLOBALES\n4. void func();          // PROTOTIPOS\n5. int main() { ... }    // PUNTO DE ENTRADA`}
+          </pre>
+        </div>
       </section>
 
       {/* --- EXERCISE LAB --- */}
