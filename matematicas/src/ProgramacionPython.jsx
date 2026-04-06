@@ -30,7 +30,7 @@ const PythonCode = ({ title, code }) => (
       <span style={{ fontSize: '0.8rem', color: '#ffd43b', fontWeight: 'bold' }}>{title.toUpperCase()}</span>
       <span style={{ color: '#306998', fontSize: '0.7rem', fontWeight: 'bold' }}>PYTHON 3.x</span>
     </div>
-    <pre style={{ padding: '30px', margin: 0, color: '#ffffff', fontSize: '1.5rem', fontFamily: 'Consolas, monospace', fontWeight: '900', lineHeight: '1.6', overflowX: 'auto' }}>
+    <pre style={{ padding: '40px', margin: 0, color: '#ffffff', fontSize: '1.8rem', fontFamily: 'Consolas, monospace', fontWeight: '900', lineHeight: '1.7', overflowX: 'auto' }}>
       <code>{code}</code>
     </pre>
   </div>
@@ -110,50 +110,110 @@ const PythonFlowchart = () => (
   </div>
 );
 
-const FruitMethodsLab = () => {
-  const [lista, setLista] = useState(['🍎', '🍌', '🍐']);
-  const [inventario, setInventario] = useState({ '🍎': 5, '🍐': 2 });
-
-  const addFruit = () => setLista([...lista, '🍎']);
-  const popFruit = () => setLista(lista.slice(0, -1));
-  const removePera = () => setLista(lista.filter(f => f !== '🍐'));
-
-  const addStock = (fruit) => setInventario({ ...inventario, [fruit]: (inventario[fruit] || 0) + 1 });
-  const delStock = (fruit) => {
-    const newInv = { ...inventario };
-    delete newInv[fruit];
-    setInventario(newInv);
-  };
-
+// --- LABORATORIO DE DICCIONARIOS (MANZANAS Y PERAS) ---
+const DictionaryFruitLab = () => {
+  const yellow = "#ffd43b";
   return (
-    <div style={{ background: '#000', padding: '2.5rem', borderRadius: '30px', border: '2px solid #ffd43b', margin: '2rem 0' }}>
-      <h3 style={{ color: '#fff', fontSize: '2.2rem', marginBottom: '2rem' }}>Laboratorio de <span style={{ color: '#ffd43b' }}>Métodos</span></h3>
-      
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '30px' }}>
-        {/* Manipulación de Listas */}
-        <div style={{ background: 'rgba(255,255,255,0.05)', padding: '20px', borderRadius: '20px', border: '1px solid #306998' }}>
-          <h4 style={{ color: '#306998', fontSize: '1.5rem', marginBottom: '1rem' }}>Lista de Compras</h4>
-          <div style={{ fontSize: '2.5rem', marginBottom: '1.5rem', minHeight: '60px' }}>{lista.join(' ')}</div>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
-            <button onClick={addFruit} className="btn-login" style={{ background: '#10b981', fontSize: '0.8rem' }}>.append('🍎')</button>
-            <button onClick={popFruit} className="btn-login" style={{ background: '#ef4444', fontSize: '0.8rem' }}>.pop()</button>
-            <button onClick={removePera} className="btn-login" style={{ background: '#fb923c', fontSize: '0.8rem' }}>.remove('🍐')</button>
-          </div>
-          <p style={{ marginTop: '15px', color: '#94a3b8', fontSize: '0.9rem' }}>Las listas son ordenadas. Usamos métodos para alterar su contenido.</p>
-        </div>
+    <div style={{ background: 'rgba(255,255,255,0.02)', padding: '4rem', borderRadius: '40px', border: `2px solid ${yellow}`, margin: '4rem 0' }}>
+      <h2 style={{ fontSize: '3.5rem', fontWeight: '900', color: '#fff', marginBottom: '2rem' }}>DICCIONARIO DE <span style={{ color: yellow }}>FRUTAS</span></h2>
+      <p style={{ fontSize: '1.6rem', color: '#94a3b8', marginBottom: '3rem' }}>Imagina que un diccionario es una caja con etiquetas. Buscas por nombre, no por posición.</p>
+      <PythonCode 
+        title="frutas_dict.py"
+        code={`# 1. Crear el diccionario\ninventario = {"manzanas": 10, "peras": 5}\n\n# 2. Acceder a un valor\nprint(inventario["manzanas"])  # Salida: 10\n\n# 3. AGREGAR o ACTUALIZAR\ninventario["uvas"] = 20        # Nueva fruta\ninventario["peras"] = 15       # Cambia las que ya había\n\n# 4. ELIMINAR\ndel inventario["manzanas"]     # ¡Adiós manzanas!`} 
+      />
+      <div className="benefit-card" style={{ marginTop: '3rem', border: '1px dashed #ffd43b', textAlign: 'left', padding: '2rem' }}>
+        <h4 style={{ color: yellow, fontSize: '1.8rem' }}>¿Cómo mostrar usuarios?</h4>
+        <p style={{ fontSize: '1.3rem', marginTop: '1rem' }}>Si guardas usuarios en un diccionario, puedes ver sus nombres así:</p>
+        <pre style={{ color: '#bef264', marginTop: '20px', fontSize: '1.4rem', fontWeight: 'bold' }}>
+          for usuario in db_usuarios.keys():<br/>
+          &nbsp;&nbsp;&nbsp;&nbsp;print(f"Usuario detectado: {'{usuario}'}")
+        </pre>
+      </div>
+    </div>
+  );
+};
 
-        {/* Manipulación de Diccionarios */}
-        <div style={{ background: 'rgba(255,255,255,0.05)', padding: '20px', borderRadius: '20px', border: '1px solid #ffd43b' }}>
-          <h4 style={{ color: '#ffd43b', fontSize: '1.5rem', marginBottom: '1rem' }}>Inventario (Dict)</h4>
-          <div style={{ fontSize: '1.2rem', fontFamily: 'monospace', color: '#fff', marginBottom: '1.5rem' }}>
-            {JSON.stringify(inventario).replace(/[{}"]/g, '').replace(/:/g, ': ')}
-          </div>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
-            <button onClick={() => addStock('🍎')} className="btn-login" style={{ background: '#306998', fontSize: '0.8rem' }}>stock['🍎'] += 1</button>
-            <button onClick={() => delStock('🍐')} className="btn-login" style={{ background: '#ef4444', fontSize: '0.8rem' }}>del stock['🍐']</button>
-          </div>
-          <p style={{ marginTop: '15px', color: '#94a3b8', fontSize: '0.9rem' }}>Los diccionarios usan <b>Claves</b>. No importa el orden, importa la etiqueta.</p>
+// --- SECCIÓN DE GEOMETRÍA CON BUCLES ---
+const ShapeLoopLab = () => {
+  const blue = "#306998";
+  return (
+    <div style={{ margin: '4rem 0', textAlign: 'left' }}>
+      <h2 style={{ fontSize: '4rem', fontWeight: '900', color: '#fff' }}>DIBUJANDO CON <span style={{ color: blue }}>BUCLES</span></h2>
+      <p style={{ fontSize: '1.6rem', color: '#94a3b8', marginBottom: '3rem' }}>Python puede repetir dibujos usando el poder de las matemáticas y strings.</p>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(450px, 1fr))', gap: '40px' }}>
+        <div>
+          <h4 style={{ color: blue, fontSize: '2rem', marginBottom: '1rem' }}>Cuadrado 5x5</h4>
+          <PythonCode title="cuadrado.py" code={`for i in range(5):\n    print("🍎 " * 5)`} />
         </div>
+        <div>
+          <h4 style={{ color: '#bef264', fontSize: '2rem', marginBottom: '1rem' }}>Triángulo de Peras</h4>
+          <PythonCode title="triangulo.py" code={`for i in range(1, 6):\n    print("🍐 " * i)`} />
+        </div>
+      </div>
+      <div style={{ marginTop: '3rem' }}>
+        <h4 style={{ color: '#fb923c', fontSize: '2rem', marginBottom: '1rem' }}>Rectángulo Dinámico</h4>
+        <PythonCode title="rectangulo.py" code={`ancho = 10\nalto = 3\nfor i in range(alto):\n    print("🍓 " * ancho)`} />
+      </div>
+    </div>
+  );
+};
+
+// --- EXPLICACIÓN DE LÓGICA PURA (BOOLEANOS, RETURN, NONE) ---
+const PureLogicSection = () => {
+  return (
+    <div style={{ background: '#000', padding: '5rem', borderRadius: '50px', border: '2px solid #334155', margin: '4rem 0' }}>
+      <h2 style={{ fontSize: '4rem', fontWeight: '900', color: '#fff', marginBottom: '4rem' }}>EL CEREBRO DEL <span style={{ color: '#fb923c' }}>PROGRAMADOR</span></h2>
+      <div className="benefits-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))' }}>
+        <div className="benefit-card">
+          <h4 style={{ color: '#10b981', fontSize: '1.8rem' }}>BOOLEANOS</h4>
+          <p style={{ fontSize: '1.2rem' }}>Solo hay dos verdades: <b>True</b> (Verdadero) o <b>False</b> (Falso). Son los cables de la lógica.</p>
+        </div>
+        <div className="benefit-card">
+          <h4 style={{ color: '#0ea5e9', fontSize: '1.8rem' }}>RETURN vs PRINT</h4>
+          <p style={{ fontSize: '1.2rem' }}><b>Print</b> solo muestra en pantalla. <b>Return</b> "escupe" el valor hacia afuera para que otra función lo use.</p>
+        </div>
+        <div className="benefit-card">
+          <h4 style={{ color: '#94a3b8', fontSize: '1.8rem' }}>EL 'NONE'</h4>
+          <p style={{ fontSize: '1.2rem' }}>Representa "Nada" o "Vacío". Si una función no tiene un <b>return</b>, Python devuelve <b>None</b> por defecto.</p>
+        </div>
+      </div>
+      <div style={{ marginTop: '4rem', textAlign: 'left', borderTop: '1px solid #334155', paddingTop: '3rem' }}>
+        <h3 style={{ color: '#ffd43b', fontSize: '2.5rem' }}>El operador += (Acumulador)</h3>
+        <p style={{ fontSize: '1.5rem', lineHeight: '1.6', color: '#cbd5e1' }}>
+          Es un atajo de genios. <code>manzanas += 1</code> es exactamente lo mismo que decir <code>manzanas = manzanas + 1</code>. 
+          Sirve para llevar cuentas de puntos, frutas o vidas.
+        </p>
+      </div>
+    </div>
+  );
+};
+
+// --- SECCIÓN DE EXCEPCIONES CON MANZANAS ---
+const ExceptionAppleLab = () => {
+  return (
+    <section className="info-section">
+      <h2 style={{ fontSize: '4rem', fontWeight: '900' }}>MANEJO DE <span className="gradient-text" style={{ background: 'linear-gradient(90deg, #ef4444, #fb923c)' }}>ERRORES</span></h2>
+      <div style={{ display: 'flex', gap: '60px', alignItems: 'center', flexWrap: 'wrap' }}>
+        <div style={{ flex: 1, textAlign: 'left' }}>
+          <p style={{ fontSize: '1.8rem', lineHeight: '1.6', color: '#94a3b8' }}>
+            ¿Qué pasa si intentas quitar 10 manzanas de una canasta que solo tiene 5? 
+            Python "explota" y detiene el programa. Para evitar que muera, usamos <b>try</b> y <b>except</b>.
+          </p>
+          <div style={{ marginTop: '3rem', fontSize: '6rem' }}>🍎 🚫 🍐</div>
+        </div>
+        <div style={{ flex: 1.5 }}>
+          <PythonCode 
+            title="seguridad_frutas.py"
+            code={`manzanas = 5\n\ntry:\n    quitar = 10\n    if quitar > manzanas:\n        raise ValueError("¡No hay suficientes!")\n    manzanas -= quitar\nexcept ValueError as error:\n    print(f"ERROR: {error}")\nfinally:\n    print("Cerrando sistema de frutas...")`}
+          />
+        </div>
+      </div>
+      <div className="benefit-card" style={{ marginTop: '3rem', background: 'rgba(239, 68, 68, 0.1)', border: '1px solid #ef4444', textAlign: 'left', padding: '2rem' }}>
+        <p style={{ fontSize: '1.3rem', lineHeight: '1.8' }}>
+          <b>TRY:</b> Intenta hacer el código peligroso.<br/>
+          <b>EXCEPT:</b> Si algo falla, ejecútame a mí para salvar el programa.<br/>
+          <b>FINALLY:</b> Se ejecuta siempre, haya error o no. Ideal para cerrar archivos.
+        </p>
       </div>
     </div>
   );
@@ -262,6 +322,44 @@ const ProgramacionPython = () => {
         </div>
       </section>
 
+      {/* --- NUEVAS SECCIONES EDUCATIVAS --- */}
+      <DictionaryFruitLab />
+      <ShapeLoopLab />
+      <PureLogicSection />
+      <ExceptionAppleLab />
+
+      {/* --- PROYECTO MAESTRO: SISTEMA FRUTAL --- */}
+      <section className="info-section" style={{ background: 'rgba(255,255,255,0.03)', padding: '6rem', borderRadius: '60px', border: '3px solid #ffd43b' }}>
+        <h2 style={{ fontSize: '4.5rem', fontWeight: '900', color: '#fff', textAlign: 'left', marginBottom: '3rem' }}>FRUTERÍA <span style={{ color: '#ffd43b' }}>MASTER_OS</span></h2>
+        <p style={{ fontSize: '1.8rem', color: '#94a3b8', textAlign: 'left', marginBottom: '4rem' }}>
+          Este código es un sistema real. Maneja contraseñas, menús infinitos y lógica de funciones.
+        </p>
+        <PythonCode 
+          title="fruteria_pro.py"
+          code={`def menu():\n    print("\\n1. Ver Stock\\n2. Agregar\\n3. Salir")\n\ndef iniciar_sistema():\n    clave = "admin123"\n    entrada = input("Contraseña: ")\n\n    if entrada != clave:\n        print("Acceso Denegado")\n        return None\n\n    inventario = {"manzanas": 10}\n    while True:\n        menu()\n        op = input("Opción: ")\n        if op == "1":\n            print(inventario)\n        elif op == "2":\n            f = input("Fruta: ")\n            inventario[f] = inventario.get(f, 0) + 1\n        elif op == "3":\n            break\n    return True\n\niniciar_sistema()`} 
+        />
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '40px', marginTop: '4rem', textAlign: 'left' }}>
+          <div className="benefit-card">
+            <h4 style={{ color: '#ffd43b', fontSize: '2rem' }}>Lógica del Menú</h4>
+            <p style={{ fontSize: '1.2rem', marginTop: '1rem' }}>
+              Usamos <b>while True</b> para que el programa nunca se detenga solo. 
+              Solo el comando <b>break</b> puede romper este bucle infinito cuando el usuario lo pida.
+            </p>
+          </div>
+          <div className="benefit-card">
+            <h4 style={{ color: '#306998', fontSize: '2rem' }}>Seguridad y Retorno</h4>
+            <p style={{ fontSize: '1.2rem', marginTop: '1rem' }}>
+              Si la clave falla, usamos <b>return None</b>. Esto detiene la función inmediatamente y no ejecuta nada más. 
+              Es como un botón de pánico que cierra la puerta.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="info-section">
+        <h2 className="section-title">Laboratorio de <span className="gradient-text">Métodos</span></h2>
+        <div style={{ maxWidth: '900px', margin: '0 auto' }}>
+
       {/* --- DATA METHODS DEEP DIVE --- */}
       <section className="info-section">
         <h2 className="section-title">Dominando <span className="gradient-text">Métodos</span></h2>
@@ -273,10 +371,6 @@ const ProgramacionPython = () => {
           <MethodAnatomy method="remove" desc="Busca un elemento específico y lo elimina." example='frutas.remove("🍐")  # Borra la primera pera' />
           <MethodAnatomy method="keys" desc="Te da una lista con todos los nombres (claves) del diccionario." example='nombres = inventario.keys()' />
         </div>
-      </section>
-
-      <section className="info-section">
-        <FruitMethodsLab />
       </section>
 
       {/* --- PYTHON ESSENTIALS --- */}
