@@ -390,6 +390,131 @@ const AvocadoMasterSection = () => (
   </section>
 );
 
+// --- COMPONENTE: BRAZO EXCAVADOR PESADO (RED CORE) ---
+const HeavyExcavatorArmSVG = () => {
+  const red = "#ef4444";
+  return (
+    <svg width="500" height="500" viewBox="0 0 500 500" style={{ filter: `drop-shadow(0 0 20px ${red}44)` }}>
+      {/* Pantalla Inferior de Control */}
+      <rect x="150" y="420" width="200" height="60" rx="10" fill="#000" stroke={red} strokeWidth="3" />
+      <text x="250" y="455" fill={red} fontSize="12" textAnchor="middle" fontFamily="monospace" fontWeight="bold">SYSTEM_STABLE: 100%</text>
+      <path d="M180 440 H320 M180 450 H280" stroke={red} strokeWidth="1" opacity="0.3" />
+
+      {/* Base Pesada */}
+      <rect x="100" y="380" width="300" height="40" rx="5" fill="#1e293b" stroke={red} strokeWidth="4" />
+      <circle cx="150" cy="400" r="5" fill={red} />
+      <circle cx="350" cy="400" r="5" fill={red} />
+
+      {/* Mastil Principal (Dos tubos y perfiles) */}
+      <g transform="translate(250, 380)">
+        <rect x="-25" y="-120" width="15" height="120" fill="none" stroke={red} strokeWidth="3" />
+        <rect x="10" y="-120" width="15" height="120" fill="none" stroke={red} strokeWidth="3" />
+        <line x1="-25" y1="-100" x2="25" y2="-80" stroke={red} strokeWidth="2" />
+        <line x1="-25" y1="-60" x2="25" y2="-40" stroke={red} strokeWidth="2" />
+        
+        {/* Engrane Redondo 1 */}
+        <g transform="translate(0, -120)">
+          <circle r="30" fill="#000" stroke={red} strokeWidth="4" />
+          {[0, 45, 90, 135, 180, 225, 270, 315].map(deg => (
+            <line key={deg} x1="0" y1="-30" x2="0" y2="-35" stroke={red} strokeWidth="4" transform={`rotate(${deg})`} />
+          ))}
+          
+          {/* Brazo Parte 2 (Tres tubos) */}
+          <g transform="rotate(-40)">
+            <rect x="-20" y="-100" width="8" height="100" fill={red} />
+            <rect x="-4" y="-100" width="8" height="100" fill={red} />
+            <rect x="12" y="-100" width="8" height="100" fill={red} />
+            
+            {/* Cableado Grueso Entrelazado */}
+            <path d="M-15 -20 Q 0 -50 15 -80" fill="none" stroke={red} strokeWidth="4" strokeDasharray="5,2" opacity="0.6" />
+            <path d="M15 -20 Q 0 -50 -15 -80" fill="none" stroke={red} strokeWidth="4" strokeDasharray="5,2" opacity="0.6" />
+
+            {/* Engrane Redondo 2 */}
+            <g transform="translate(0, -100)">
+              <circle r="25" fill="#000" stroke={red} strokeWidth="4" />
+              
+              {/* Brazo Parte 3 (Cilindros y Tornillos) */}
+              <g transform="rotate(60)">
+                <rect x="-10" y="-80" width="20" height="80" rx="5" fill="none" stroke={red} strokeWidth="3" />
+                <circle cx="0" cy="-40" r="4" fill="white" /> {/* Tornillo */}
+                <circle cx="0" cy="-60" r="4" fill="white" /> {/* Tornillo */}
+
+                {/* Caja Laser */}
+                <rect x="15" y="-70" width="20" height="30" fill={red} opacity="0.2" stroke={red} />
+                <line x1="25" y1="-55" x2="150" y2="-55" stroke={red} strokeWidth="1" strokeDasharray="10,5">
+                  <animate attributeName="opacity" values="0;1;0" dur="1s" repeatCount="indefinite" />
+                </line>
+
+                {/* Gripper 3 Dedos Desplegables */}
+                <g transform="translate(0, -80)">
+                  <path d="M-10 0 Q -30 -20 -40 -50" fill="none" stroke={red} strokeWidth="6" strokeLinecap="round" />
+                  <path d="M0 0 V -60" fill="none" stroke={red} strokeWidth="6" strokeLinecap="round" />
+                  <path d="M10 0 Q 30 -20 40 -50" fill="none" stroke={red} strokeWidth="6" strokeLinecap="round" />
+                  <circle r="8" fill="white" />
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </svg>
+  );
+};
+
+// --- SECCIÓN: RED_EXCAVATOR_CORE ---
+const HeavyExcavatorSection = () => (
+  <section className="info-section" style={{ background: 'rgba(239, 68, 68, 0.03)', padding: '5rem 10%', borderRadius: '60px', border: `2px solid #ef444433`, marginTop: '4rem' }}>
+    <h2 style={{ fontSize: '4rem', fontWeight: '900', color: '#fff', textAlign: 'left', marginBottom: '1rem' }}>
+      RED EXCAVATOR <span style={{ color: '#ef4444' }}>CORE v4.0</span>
+    </h2>
+    <p style={{ fontSize: '1.5rem', color: '#94a3b8', textAlign: 'left', marginBottom: '4rem' }}>
+      Ingeniería de alto impacto. Estructura tri-tubular con engranes de torque masivo y sistema de visión láser integrado.
+    </p>
+
+    <div style={{ display: 'flex', gap: '60px', flexWrap: 'wrap', alignItems: 'center' }}>
+      <div style={{ flex: 1.5, minWidth: '350px' }}>
+        <h3 style={{ color: '#ef4444', fontSize: '2.5rem', marginBottom: '2rem', textAlign: 'left' }}>Lógica de Kernel (C++ Heavy)</h3>
+        <div style={{ background: '#000', borderRadius: '25px', border: `3px solid #ef4444`, padding: '30px', textAlign: 'left', boxShadow: '0 0 30px #ef444433' }}>
+          <pre style={{ color: '#fff', fontSize: '1.1rem', fontFamily: 'monospace', lineHeight: '1.5', margin: 0, overflowX: 'auto' }}>
+            <code>{`#include <RoboticsCore.h>
+
+class HeavyExcavator {
+  private:
+    HydraulicSystem hydraulics;
+    LaserScanner lidar;
+    Joint gears[3];
+
+  public:
+    void powerOn() {
+      hydraulics.pressurize(3000); // PSI
+      lidar.activate(WAVELENGTH_RED);
+      for(int i=0; i<3; i++) gears[i].calibrate();
+    }
+
+    void performExcavation(Vector3 target) {
+      // Cálculo de Cinemática Inversa
+      float theta1, theta2, theta3;
+      if(computeIK(target, &theta1, &theta2, &theta3)) {
+        moveJoints(theta1, theta2, theta3);
+        deployGripper(3); // 3 Dedos
+        applyTorque(MAX_LOAD);
+      }
+    }
+
+    void safetyProtocol() {
+      if(lidar.detectObstacle()) hydraulics.emergencyStop();
+    }
+};`}</code>
+          </pre>
+        </div>
+      </div>
+      <div style={{ flex: 1, minWidth: '300px', display: 'flex', justifyContent: 'center' }}>
+        <HeavyExcavatorArmSVG />
+      </div>
+    </div>
+  </section>
+);
+
 // --- COMPONENTE: PLANO TÉCNICO (BLUEPRINT) ---
 const BlueprintSVG = ({ type }) => {
   const color = type === 'terminator' ? ROBOT_UI.danger : ROBOT_UI.primary;
@@ -524,6 +649,9 @@ const RobotsMaster = () => {
 
       {/* --- LIVE INDUSTRIAL DASHBOARD --- */}
       <IndustrialAvocadoDashboard />
+
+      {/* --- NUEVA SECCIÓN: HEAVY EXCAVATOR ARM --- */}
+      <HeavyExcavatorSection />
 
       {/* --- NUEVA SECCIÓN: INDUSTRIAL AVOCADO ARM --- */}
       <AvocadoMasterSection />
