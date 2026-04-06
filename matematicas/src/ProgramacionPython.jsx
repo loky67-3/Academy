@@ -30,7 +30,7 @@ const PythonCode = ({ title, code }) => (
       <span style={{ fontSize: '0.8rem', color: '#ffd43b', fontWeight: 'bold' }}>{title.toUpperCase()}</span>
       <span style={{ color: '#306998', fontSize: '0.7rem', fontWeight: 'bold' }}>PYTHON 3.x</span>
     </div>
-    <pre style={{ padding: '40px', margin: 0, color: '#ffffff', fontSize: '2rem', fontFamily: 'Consolas, monospace', fontWeight: '900', lineHeight: '1.7', overflowX: 'auto' }}>
+    <pre style={{ padding: '40px', margin: 0, color: '#ffffff', fontSize: '2.5rem', fontFamily: 'Consolas, monospace', fontWeight: '900', lineHeight: '1.7', overflowX: 'auto' }}>
       <code>{code}</code>
     </pre>
   </div>
@@ -109,6 +109,65 @@ const PythonFlowchart = () => (
     </svg>
   </div>
 );
+
+// --- LABORATORIO DINÁMICO DE MÉTODOS ---
+const DynamicMethodsLab = () => {
+  const [lista, setLista] = useState(['🍎', '🍌', '🍐']);
+  const [inventario, setInventario] = useState({ 'manzanas': 5, 'peras': 2 });
+  const yellow = "#ffd43b";
+  const blue = "#306998";
+
+  const addFruit = () => setLista([...lista, '🥭']);
+  const popFruit = () => setLista(lista.slice(0, -1));
+  const removeBanana = () => setLista(lista.filter(f => f !== '🍌'));
+
+  const addStock = (fruit) => setInventario({ ...inventario, [fruit]: (inventario[fruit] || 0) + 1 });
+  const delStock = (fruit) => {
+    const newInv = { ...inventario };
+    delete newInv[fruit];
+    setInventario(newInv);
+  };
+
+  return (
+    <div style={{ background: 'rgba(255,255,255,0.03)', padding: '4rem', borderRadius: '40px', border: `3px solid ${blue}`, margin: '4rem 0' }}>
+      <h2 style={{ fontSize: '4.5rem', fontWeight: '900', color: '#fff', marginBottom: '2.5rem' }}>PLAYGROUND <span style={{ color: yellow }}>DINÁMICO</span></h2>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '40px' }}>
+        
+        {/* LISTAS INTERACTIVAS */}
+        <div style={{ background: '#000', padding: '40px', borderRadius: '35px', border: `2px solid ${blue}`, textAlign: 'left', boxShadow: `0 0 30px ${blue}33` }}>
+          <h4 style={{ color: blue, fontSize: '3rem', marginBottom: '1.5rem' }}>Explorador de LISTAS</h4>
+          <p style={{ color: '#94a3b8', fontSize: '1.4rem', marginBottom: '1.5rem' }}>Las listas guardan objetos en orden. ¡Mira cómo cambian!</p>
+          <div style={{ fontSize: '5rem', marginBottom: '2.5rem', minHeight: '150px', display: 'flex', gap: '15px', flexWrap: 'wrap', background: 'rgba(255,255,255,0.05)', padding: '25px', borderRadius: '25px', alignItems: 'center', justifyContent: 'center' }}>
+            {lista.map((f, i) => (
+              <span key={i} className="pop-in-fruit">{f}</span>
+            ))}
+            {lista.length === 0 && <span style={{fontSize: '2rem', color: '#475569'}}>Cesta Vacía...</span>}
+          </div>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '15px' }}>
+            <button onClick={addFruit} className="btn-login" style={{ background: '#10b981', fontSize: '1.2rem', fontWeight: '900', padding: '15px 25px' }}>.append('🥭')</button>
+            <button onClick={popFruit} className="btn-login" style={{ background: '#ef4444', fontSize: '1.2rem', fontWeight: '900', padding: '15px 25px' }}>.pop()</button>
+            <button onClick={removeBanana} className="btn-login" style={{ background: '#fb923c', fontSize: '1.2rem', fontWeight: '900', padding: '15px 25px' }}>.remove('🍌')</button>
+          </div>
+        </div>
+
+        {/* DICCIONARIOS INTERACTIVOS */}
+        <div style={{ background: '#000', padding: '40px', borderRadius: '35px', border: `2px solid ${yellow}`, textAlign: 'left', boxShadow: `0 0 30px ${yellow}33` }}>
+          <h4 style={{ color: yellow, fontSize: '3rem', marginBottom: '1.5rem' }}>Bóveda de DICTS</h4>
+          <p style={{ color: '#94a3b8', fontSize: '1.4rem', marginBottom: '1.5rem' }}>Los diccionarios usan LLAVES para guardar datos exactos.</p>
+          <div style={{ fontSize: '2.5rem', fontFamily: 'Consolas, monospace', color: '#fff', marginBottom: '2.5rem', minHeight: '150px', background: 'rgba(255,255,255,0.05)', padding: '25px', borderRadius: '25px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+            {Object.entries(inventario).length > 0 ? Object.entries(inventario).map(([k, v]) => (
+              <div key={k} style={{marginBottom: '5px'}}>"{k}": <span style={{color: yellow}}>{v}</span></div>
+            )) : <div style={{fontSize: '2rem', color: '#475569'}}>Inventario Vacío</div>}
+          </div>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '15px' }}>
+            <button onClick={() => addStock('manzanas')} className="btn-login" style={{ background: blue, fontSize: '1.2rem', fontWeight: '900', padding: '15px 25px' }}>stock['🍎'] += 1</button>
+            <button onClick={() => delStock('peras')} className="btn-login" style={{ background: '#ef4444', fontSize: '1.2rem', fontWeight: '900', padding: '15px 25px' }}>del stock['🍐']</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 // --- LABORATORIO DE DICCIONARIOS (MANZANAS Y PERAS) ---
 const DictionaryFruitLab = () => {
@@ -322,6 +381,9 @@ const ProgramacionPython = () => {
         </div>
       </section>
 
+      {/* --- LABORATORIO DINÁMICO --- */}
+      <DynamicMethodsLab />
+
       {/* --- PROYECTO MAESTRO: SISTEMA FRUTAL --- */}
       <section className="info-section" style={{ background: 'rgba(255,255,255,0.03)', padding: '6rem', borderRadius: '60px', border: '3px solid #ffd43b', marginBottom: '4rem' }}>
         <h2 style={{ fontSize: '4.5rem', fontWeight: '900', color: '#fff', textAlign: 'left', marginBottom: '3rem' }}>FRUTERÍA <span style={{ color: '#ffd43b' }}>MASTER_OS</span></h2>
@@ -506,6 +568,15 @@ const ProgramacionPython = () => {
       <div style={{ textAlign: 'center', marginTop: '60px' }}>
         <button className="btn-login" style={{ background: '#ffd43b', color: '#020617', padding: '15px 40px', fontSize: '1.2rem' }} onClick={() => navigate('/')}>Volver al Mainframe</button>
       </div>
+
+      <style dangerouslySetInnerHTML={{ __html: `
+        @keyframes popIn {
+          0% { transform: scale(0); opacity: 0; }
+          70% { transform: scale(1.2); }
+          100% { transform: scale(1); opacity: 1; }
+        }
+        .pop-in-fruit { display: inline-block; animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+      `}} />
     </div>
   );
 };
