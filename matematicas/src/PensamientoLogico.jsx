@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Navbar from './Navbar';
+import Navbar from './Navbar'; // Asegúrate de que Navbar esté importado
 
 const ProfessorNeon = ({ expression = 'happy', size = 100 }) => (
   <svg width={size} height={size} viewBox="0 0 200 200" style={{ filter: 'drop-shadow(0 0 10px #10b981)' }}>
