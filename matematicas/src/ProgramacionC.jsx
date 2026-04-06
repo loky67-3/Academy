@@ -26,6 +26,84 @@ const CyberDuo = ({ expression = 'happy', size = 160 }) => {
   );
 };
 
+// --- COMPARATIVA DE VARIABLES ---
+const VariableComparison = () => {
+  const red = "#ef4444";
+  return (
+    <div style={{ background: 'rgba(255,255,255,0.02)', padding: '3rem', borderRadius: '40px', border: `1px solid ${red}44`, margin: '4rem 0' }}>
+      <h3 style={{ color: '#fff', fontSize: '2.5rem', marginBottom: '2rem', fontWeight: '900' }}>¿LET O VAR? <span style={{ color: red }}>¡AQUÍ NO!</span></h3>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '30px' }}>
+        <div style={{ background: '#000', padding: '25px', borderRadius: '20px', border: '1px solid #334155' }}>
+          <h4 style={{ color: '#0ea5e9', marginBottom: '15px' }}>En JavaScript / Python</h4>
+          <code style={{ color: '#94a3b8', fontSize: '1.1rem' }}>let x = 10;<br/>x = "Hola"; // OK</code>
+          <p style={{ marginTop: '15px', fontSize: '0.9rem' }}>El lenguaje es flexible pero consume más RAM porque no sabe qué es 'x'.</p>
+        </div>
+        <div style={{ background: '#000', padding: '25px', borderRadius: '20px', border: `1px solid ${red}` }}>
+          <h4 style={{ color: red, marginBottom: '15px' }}>En C (Tipado Estricto)</h4>
+          <code style={{ color: '#fff', fontSize: '1.1rem' }}>int x = 10;<br/>x = "Hola"; // ERROR CRÍTICO</code>
+          <p style={{ marginTop: '15px', fontSize: '0.9rem' }}>Debes reservar el espacio exacto. Esto hace que C sea el más rápido.</p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// --- SECCIÓN DE ESTRUCTURAS DE DATOS ---
+const DataStructuresC = () => {
+  const red = "#ef4444";
+  return (
+    <div style={{ margin: '4rem 0' }}>
+      <h2 style={{ fontSize: '3.5rem', fontWeight: '900', color: '#fff', textAlign: 'left', marginBottom: '3rem' }}>ORGANIZANDO <span style={{ color: red }}>DATOS</span></h2>
+      <div className="benefits-grid">
+        <div className="benefit-card" style={{ textAlign: 'left' }}>
+          <h4 style={{ color: red }}>ARRAYS (Listas)</h4>
+          <p>Colecciones del mismo tipo con tamaño fijo en memoria.</p>
+          <pre style={{ color: '#bef264', fontSize: '0.9rem', marginTop: '10px' }}>int notas[5] = {'{10, 9, 8, 10, 7}'};</pre>
+        </div>
+        <div className="benefit-card" style={{ textAlign: 'left' }}>
+          <h4 style={{ color: red }}>STRUCTS (Tuplas/Objetos)</h4>
+          <p>Para agrupar datos de distintos tipos en una sola entidad.</p>
+          <pre style={{ color: '#bef264', fontSize: '0.9rem', marginTop: '10px' }}>struct Usuario {'{ int id; char nick[20]; }'};</pre>
+        </div>
+        <div className="benefit-card" style={{ textAlign: 'left' }}>
+          <h4 style={{ color: red }}>ENUMS (Diccionarios)</h4>
+          <p>Asigna nombres legibles a números constantes.</p>
+          <pre style={{ color: '#bef264', fontSize: '0.9rem', marginTop: '10px' }}>enum Estado {'{ OFF, ON, ERROR }'};</pre>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// --- EXPLICACIÓN DE OPERADORES BITWISE ---
+const OperatorLab = () => {
+  const red = "#ef4444";
+  return (
+    <div style={{ background: '#000', padding: '4rem', borderRadius: '40px', border: `2px solid #334155`, margin: '4rem 0' }}>
+      <h3 style={{ color: '#fff', fontSize: '2.5rem', marginBottom: '2rem' }}>EL LABORATORIO DE <span style={{ color: red }}>BITS</span></h3>
+      <div style={{ display: 'flex', gap: '40px', flexWrap: 'wrap' }}>
+        <div style={{ flex: 1, textAlign: 'left' }}>
+          <h4 style={{ color: red, fontSize: '1.5rem' }}>Operador {"<<"} y {">>"}</h4>
+          <p style={{ fontSize: '1.2rem', color: '#94a3b8', lineHeight: '1.6' }}>
+            En C, estos no son para imprimir (como en C++). Son para <b>desplazar bits</b>. 
+            Mover un bit a la izquierda ({"<<"}) es lo mismo que multiplicar por 2 de forma ultrarrápida.
+          </p>
+          <div style={{ background: 'rgba(255,255,255,0.05)', padding: '20px', borderRadius: '15px', marginTop: '20px' }}>
+            <code style={{ color: '#fff' }}>5 {"<<"} 1 = 10; // 0101 se vuelve 1010</code>
+          </div>
+        </div>
+        <div style={{ flex: 1, textAlign: 'left' }}>
+          <h4 style={{ color: red, fontSize: '1.5rem' }}>Operador & y *</h4>
+          <p style={{ fontSize: '1.2rem', color: '#94a3b8', lineHeight: '1.6' }}>
+            <b>& (Dirección):</b> "¿Dónde vives?".<br/>
+            <b>* (Puntero):</b> "Ve a esa dirección y tráeme el valor".
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 // --- SECCIÓN DE ESTADÍSTICAS DEL LENGUAJE ---
 const CStatsSection = () => {
   const red = "#ef4444";
@@ -452,6 +530,9 @@ const ProgramacionC = () => {
         </div>
       </section>
 
+      {/* --- COMPARATIVA DE VARIABLES --- */}
+      <VariableComparison />
+
       {/* --- NEW STATS SECTION --- */}
       <CStatsSection />
 
@@ -585,8 +666,14 @@ const ProgramacionC = () => {
         />
       </section>
 
+      {/* --- ESTRUCTURAS Y OPERADORES --- */}
+      <DataStructuresC />
+      <OperatorLab />
+
       {/* --- NEW POINTERS VISUAL --- */}
       <PointersVisual />
+
+      <JarvisArmSVG />
 
       {/* --- CONTROL DE FLUJO --- */}
       <section className="info-section" style={{ background: '#000', padding: '5rem', borderRadius: '50px', border: '2px solid #334155' }}>
@@ -623,6 +710,21 @@ const ProgramacionC = () => {
         </div>
       </section>
 
+      {/* --- PROYECTO: CALCULADORA --- */}
+      <section className="info-section">
+        <h2 style={{ fontSize: '4rem', fontWeight: '900', textAlign: 'left' }}>PROYECTO: <span style={{ color: '#ef4444' }}>NEON_CALC.C</span></h2>
+        <CCode 
+          title="calculadora.c"
+          code={`#include <stdio.h>\n\nint main() {\n    char op;\n    float n1, n2;\n    printf("Operación (+, -, *, /): ");\n    scanf("%c", &op);\n    printf("Números: ");\n    scanf("%f %f", &n1, &n2);\n\n    if(op == '+') printf("%.2f", n1 + n2);\n    else if(op == '/') printf("%.2f", n1 / n2);\n    return 0;\n}`}
+          annotations={[
+            { top: '20px', text: 'Entrada/Salida Estándar' },
+            { top: '75px', text: 'Lee un carácter (el símbolo)' },
+            { top: '90px', text: 'Lee dos decimales a la vez' },
+            { top: '125px', text: 'Lógica de decisión simple' }
+          ]}
+        />
+      </section>
+
       {/* --- FUNCTIONS --- */}
       <section className="info-section">
         <BigExplanation 
@@ -654,6 +756,33 @@ const ProgramacionC = () => {
             { top: '125px', text: 'Punto de entrada vital' }
           ]}
         />
+      </section>
+
+      {/* --- PROYECTO MAESTRO: BANK KERNEL --- */}
+      <section className="info-section">
+        <h2 style={{ fontSize: '4rem', fontWeight: '900', textAlign: 'left', marginBottom: '3rem' }}>SISTEMA BANCARIO <span style={{ color: '#ef4444' }}>DE ÉLITE</span></h2>
+        <p style={{ fontSize: '1.5rem', color: '#94a3b8', textAlign: 'left', marginBottom: '3rem' }}>
+          Este código simula la lógica de una bóveda real. Analiza cómo gestionamos múltiples cuentas con estructuras.
+        </p>
+        <CCode 
+          title="bank_core.c"
+          code={`#include <stdio.h>\n#include <string.h>\n\nstruct Cuenta {\n    int id;\n    char nombre[50];\n    double saldo;\n};\n\nvoid depositar(struct Cuenta *c, double monto) {\n    c->saldo += monto;\n    printf("Depósito exitoso en cuenta %d\\n", c->id);\n}\n\nint main() {\n    struct Cuenta miBoveda = {101, "Admin_Neon", 5000.0};\n    \n    printf("Saldo Inicial: $%.2f\\n", miBoveda.saldo);\n    depositar(&miBoveda, 1500.50);\n    printf("Nuevo Saldo: $%.2f\\n", miBoveda.saldo);\n    \n    return 0;\n}`}
+          annotations={[
+            { top: '55px', text: 'Define una "Tupla" personalizada' },
+            { top: '110px', text: 'Puntero: Modifica el saldo real' },
+            { top: '125px', text: 'Acceso a miembro mediante flecha' },
+            { top: '175px', text: 'Inicialización masiva de datos' },
+            { top: '215px', text: 'Pasamos la DIRECCIÓN (&) para editar' }
+          ]}
+        />
+        <div className="benefit-card" style={{ marginTop: '3rem', border: '1px dashed #ef4444', textAlign: 'left' }}>
+          <h4 style={{ color: '#ef4444' }}>¿Qué está pasando aquí?</h4>
+          <p style={{ fontSize: '1.1rem', lineHeight: '1.6' }}>
+            1. Usamos <b>struct</b> para crear un objeto "Cuenta".<br/>
+            2. La función <b>depositar</b> usa un puntero <code>*c</code>. Esto es vital: si no usamos punteros, C crearía una copia de la cuenta y el dinero ¡nunca llegaría al saldo original!<br/>
+            3. El operador <code>-></code> es el que C usa para entrar a las propiedades de un puntero.
+          </p>
+        </div>
       </section>
 
       {/* --- ESTRUCTURA DE ARCHIVO --- */}
@@ -761,10 +890,6 @@ const ProgramacionC = () => {
         </section>
       )}
 
-      {/* --- SECCIÓN DEL BRAZO ROBÓTICO --- */}
-      <section className="info-section">
-        <JarvisArmSVG />
-      </section>
 
       <div style={{ textAlign: 'center', marginTop: '80px' }}>
         <button className="btn-login" style={{ background: '#fff', color: '#000', padding: '20px 60px', fontSize: '1.5rem', fontWeight: '900' }} onClick={() => navigate('/')}>VOLVER AL MAINFRAME</button>
