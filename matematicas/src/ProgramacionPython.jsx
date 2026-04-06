@@ -30,7 +30,7 @@ const PythonCode = ({ title, code }) => (
       <span style={{ fontSize: '0.8rem', color: '#ffd43b', fontWeight: 'bold' }}>{title.toUpperCase()}</span>
       <span style={{ color: '#306998', fontSize: '0.7rem', fontWeight: 'bold' }}>PYTHON 3.x</span>
     </div>
-    <pre style={{ padding: '40px', margin: 0, color: '#ffffff', fontSize: '1.8rem', fontFamily: 'Consolas, monospace', fontWeight: '900', lineHeight: '1.7', overflowX: 'auto' }}>
+    <pre style={{ padding: '40px', margin: 0, color: '#ffffff', fontSize: '2rem', fontFamily: 'Consolas, monospace', fontWeight: '900', lineHeight: '1.7', overflowX: 'auto' }}>
       <code>{code}</code>
     </pre>
   </div>
@@ -322,43 +322,37 @@ const ProgramacionPython = () => {
         </div>
       </section>
 
-      {/* --- NUEVAS SECCIONES EDUCATIVAS --- */}
-      <DictionaryFruitLab />
-      <ShapeLoopLab />
-      <PureLogicSection />
-      <ExceptionAppleLab />
-
       {/* --- PROYECTO MAESTRO: SISTEMA FRUTAL --- */}
-      <section className="info-section" style={{ background: 'rgba(255,255,255,0.03)', padding: '6rem', borderRadius: '60px', border: '3px solid #ffd43b' }}>
+      <section className="info-section" style={{ background: 'rgba(255,255,255,0.03)', padding: '6rem', borderRadius: '60px', border: '3px solid #ffd43b', marginBottom: '4rem' }}>
         <h2 style={{ fontSize: '4.5rem', fontWeight: '900', color: '#fff', textAlign: 'left', marginBottom: '3rem' }}>FRUTERÍA <span style={{ color: '#ffd43b' }}>MASTER_OS</span></h2>
         <p style={{ fontSize: '1.8rem', color: '#94a3b8', textAlign: 'left', marginBottom: '4rem' }}>
           Este código es un sistema real. Maneja contraseñas, menús infinitos y lógica de funciones.
         </p>
         <PythonCode 
           title="fruteria_pro.py"
-          code={`def menu():\n    print("\\n1. Ver Stock\\n2. Agregar\\n3. Salir")\n\ndef iniciar_sistema():\n    clave = "admin123"\n    entrada = input("Contraseña: ")\n\n    if entrada != clave:\n        print("Acceso Denegado")\n        return None\n\n    inventario = {"manzanas": 10}\n    while True:\n        menu()\n        op = input("Opción: ")\n        if op == "1":\n            print(inventario)\n        elif op == "2":\n            f = input("Fruta: ")\n            inventario[f] = inventario.get(f, 0) + 1\n        elif op == "3":\n            break\n    return True\n\niniciar_sistema()`} 
+          code={`def menu():\n    print("\\n1. Ver Stock\\n2. Agregar\\n3. Salir")\n\ndef iniciar_sistema():\n    clave = "admin123"\n    entrada = input("Contraseña: ")\n\n    if entrada != clave:\n        print("Acceso Denegado")\n        return None\n\n    inventario = {"manzanas": 10, "peras": 5}\n    while True:\n        menu()\n        op = input("Opción: ")\n        if op == "1":\n            print(f"Stock Actual: {inventario}")\n        elif op == "2":\n            f = input("Fruta: ")\n            inventario[f] = inventario.get(f, 0) + 1\n        elif op == "3":\n            print("Saliendo...")\n            break\n    return True\n\niniciar_sistema()`} 
         />
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '40px', marginTop: '4rem', textAlign: 'left' }}>
           <div className="benefit-card">
             <h4 style={{ color: '#ffd43b', fontSize: '2rem' }}>Lógica del Menú</h4>
             <p style={{ fontSize: '1.2rem', marginTop: '1rem' }}>
-              Usamos <b>while True</b> para que el programa nunca se detenga solo. 
-              Solo el comando <b>break</b> puede romper este bucle infinito cuando el usuario lo pida.
+              Usamos <b>while True</b> para que el programa nunca se detenga. Solo el comando <b>break</b> puede romper este bucle.
             </p>
           </div>
           <div className="benefit-card">
             <h4 style={{ color: '#306998', fontSize: '2rem' }}>Seguridad y Retorno</h4>
             <p style={{ fontSize: '1.2rem', marginTop: '1rem' }}>
-              Si la clave falla, usamos <b>return None</b>. Esto detiene la función inmediatamente y no ejecuta nada más. 
-              Es como un botón de pánico que cierra la puerta.
+              Si la clave falla, usamos <b>return None</b>. Esto detiene la función inmediatamente. Es como un botón de pánico.
             </p>
           </div>
         </div>
       </section>
 
-      <section className="info-section">
-        <h2 className="section-title">Laboratorio de <span className="gradient-text">Métodos</span></h2>
-        <div style={{ maxWidth: '900px', margin: '0 auto' }}>
+      {/* --- NUEVAS SECCIONES EDUCATIVAS --- */}
+      <DictionaryFruitLab />
+      <ShapeLoopLab />
+      <PureLogicSection />
+      <ExceptionAppleLab />
 
       {/* --- DATA METHODS DEEP DIVE --- */}
       <section className="info-section">
