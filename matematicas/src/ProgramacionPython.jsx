@@ -30,7 +30,7 @@ const PythonCode = ({ title, code }) => (
       <span style={{ fontSize: '0.8rem', color: '#ffd43b', fontWeight: 'bold' }}>{title.toUpperCase()}</span>
       <span style={{ color: '#306998', fontSize: '0.7rem', fontWeight: 'bold' }}>PYTHON 3.x</span>
     </div>
-    <pre style={{ padding: '25px', margin: 0, color: '#ffffff', fontSize: '1.25rem', fontFamily: 'Consolas, monospace', fontWeight: 'bold', lineHeight: '1.5' }}>
+    <pre style={{ padding: '30px', margin: 0, color: '#ffffff', fontSize: '1.5rem', fontFamily: 'Consolas, monospace', fontWeight: '900', lineHeight: '1.6', overflowX: 'auto' }}>
       <code>{code}</code>
     </pre>
   </div>
