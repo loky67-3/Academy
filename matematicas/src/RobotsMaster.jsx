@@ -11,6 +11,112 @@ const ROBOT_UI = {
   bg: '#020617'
 };
 
+// --- COMPONENTE: BRAZO AGUACATERO (AVOCADO MASTER) ---
+const AvocadoArmSVG = () => (
+  <svg width="400" height="350" viewBox="0 0 400 350" style={{ filter: `drop-shadow(0 0 15px ${ROBOT_UI.primary}66)` }}>
+    {/* Base Rotatoria */}
+    <rect x="150" y="300" width="100" height="30" rx="5" fill="none" stroke={ROBOT_UI.primary} strokeWidth="4" />
+    {/* Eje Principal */}
+    <path d="M200 300 L200 200" stroke={ROBOT_UI.primary} strokeWidth="12" strokeLinecap="round" />
+    {/* Articulación Hidráulica */}
+    <circle cx="200" cy="200" r="15" fill={ROBOT_UI.bg} stroke={ROBOT_UI.warning} strokeWidth="4" />
+    
+    {/* Brazo Extensor */}
+    <g transform="rotate(-30, 200, 200)">
+      <rect x="190" y="50" width="20" height="150" rx="10" fill="none" stroke={ROBOT_UI.primary} strokeWidth="4" />
+      {/* Pinza Especial (Gripper de Cajas) */}
+      <path d="M180 50 L220 50 M180 50 L170 20 M220 50 L230 20" stroke={ROBOT_UI.danger} strokeWidth="6" strokeLinecap="round" />
+      {/* Caja de Aguacates (Representación) */}
+      <rect x="160" y="-30" width="80" height="40" fill="rgba(190, 242, 100, 0.2)" stroke="#bef264" strokeWidth="2" />
+      <text x="200" y="-5" fill="#bef264" fontSize="10" textAnchor="middle" fontWeight="bold">FRUIT_BOX</text>
+    </g>
+
+    {/* Líneas de Escaneo de Carga */}
+    <line x1="50" y1="100" x2="350" y2="100" stroke={ROBOT_UI.primary} strokeWidth="1" strokeDasharray="5,5" opacity="0.3" />
+    <text x="50" y="90" fill={ROBOT_UI.primary} fontSize="10" fontFamily="monospace">LOAD_SENSOR: ACTIVE</text>
+  </svg>
+);
+
+// --- COMPONENTE: PLACA CONTROLADORA (ESP32 NEON) ---
+const ControllerBoardSVG = () => (
+  <svg width="300" height="200" viewBox="0 0 300 200">
+    <rect x="50" y="20" width="200" height="160" rx="10" fill="#1e293b" stroke={ROBOT_UI.primary} strokeWidth="3" />
+    {/* Microprocesador */}
+    <rect x="110" y="60" width="80" height="80" fill="#020617" stroke={ROBOT_UI.warning} strokeWidth="2" />
+    <text x="150" y="105" fill={ROBOT_UI.warning} fontSize="14" textAnchor="middle" fontWeight="bold">ESP32-D32</text>
+    {/* Pines de Conexión */}
+    {[0, 1, 2, 3, 4, 5].map(i => (
+      <React.Fragment key={i}>
+        <rect x="35" y={40 + i*25} width="15" height="10" fill={ROBOT_UI.primary} />
+        <rect x="250" y="40 + i*25" width="15" height="10" fill={ROBOT_UI.primary} />
+      </React.Fragment>
+    ))}
+    <text x="150" y="170" fill={ROBOT_UI.primary} fontSize="10" textAnchor="middle">DUAL-CORE RTOS ENGINE</text>
+  </svg>
+);
+
+// --- SECCIÓN DE AGRO-BOTICA ---
+const AvocadoMasterSection = () => (
+  <section className="info-section" style={{ background: 'rgba(0, 242, 255, 0.03)', padding: '5rem 10%', borderRadius: '60px', border: `2px solid ${ROBOT_UI.primary}33`, marginTop: '4rem' }}>
+    <h2 style={{ fontSize: '4rem', fontWeight: '900', color: '#fff', textAlign: 'left', marginBottom: '1rem' }}>
+      AVOCADO MASTER <span style={{ color: '#bef264' }}>3000</span>
+    </h2>
+    <p style={{ fontSize: '1.5rem', color: '#94a3b8', textAlign: 'left', marginBottom: '4rem' }}>
+      Diseñado para la industria agrícola. Este brazo utiliza <b>soft-robotics</b> para vaciar cajas sin dañar la maduración del fruto.
+    </p>
+
+    <div style={{ display: 'flex', gap: '60px', flexWrap: 'wrap', alignItems: 'flex-start' }}>
+      <div style={{ flex: 1, minWidth: '300px' }}>
+        <AvocadoArmSVG />
+        <div className="benefit-card" style={{ marginTop: '2rem', textAlign: 'left' }}>
+          <h4 style={{ color: ROBOT_UI.warning }}>HARDWARE DE CONTROL</h4>
+          <p style={{ fontSize: '1.1rem', lineHeight: '1.6' }}>
+            <b>Placa Principal:</b> ESP32 WROOM (Dual Core).<br/>
+            <b>Actuadores:</b> Servos Industriales con feedback de torque.<br/>
+            <b>Sensores:</b> Celda de carga (para peso) y cámara TOF (para distancia).
+          </p>
+          <div style={{ marginTop: '20px', display: 'flex', justifyContent: 'center' }}>
+            <ControllerBoardSVG />
+          </div>
+        </div>
+      </div>
+
+      <div style={{ flex: 1.5, minWidth: '350px' }}>
+        <h3 style={{ color: ROBOT_UI.primary, fontSize: '2.5rem', marginBottom: '2rem', textAlign: 'left' }}>Programación Estructurada (C++)</h3>
+        <div style={{ background: '#000', borderRadius: '25px', border: `3px solid ${ROBOT_UI.primary}`, padding: '30px', textAlign: 'left' }}>
+          <pre style={{ color: '#fff', fontSize: '1.2rem', fontFamily: 'monospace', lineHeight: '1.6', margin: 0 }}>
+            <code>{`class BrazoAcuacatero {
+  public:
+    void inicializar() {
+      Serial.begin(115200);
+      motorX.attach(PIN_1);
+      sensorPeso.begin();
+    }
+
+    void vaciarCaja() {
+      if(detectarCaja()) {
+        sujetarConSuavidad();
+        inclinarLento(45); // Ángulo de descarga
+        esperarVaciado();
+        regresarABase();
+      }
+    }
+};`}</code>
+          </pre>
+        </div>
+        <div style={{ marginTop: '2rem', padding: '2rem', background: 'rgba(255,255,255,0.05)', borderRadius: '20px', textAlign: 'left' }}>
+          <h4 style={{ color: ROBOT_UI.primary }}>Lógica de Métodos:</h4>
+          <ul style={{ color: '#94a3b8', lineHeight: '2' }}>
+            <li>🔹 <b>sujetarConSuavidad():</b> Controla el PWM para no aplastar la caja.</li>
+            <li>🔹 <b>inclinarLento():</b> Usa una curva de aceleración (S-Curve) para evitar caídas bruscas.</li>
+            <li>🔹 <b>DualCore:</b> El núcleo 0 maneja los motores, el núcleo 1 procesa los aguacates.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+);
+
 // --- COMPONENTE: PLANO TÉCNICO (BLUEPRINT) ---
 const BlueprintSVG = ({ type }) => {
   const color = type === 'terminator' ? ROBOT_UI.danger : ROBOT_UI.primary;
@@ -142,6 +248,9 @@ const RobotsMaster = () => {
           </div>
         </div>
       </section>
+
+      {/* --- NUEVA SECCIÓN: INDUSTRIAL AVOCADO ARM --- */}
+      <AvocadoMasterSection />
 
       {/* --- BLUEPRINT SECTION --- */}
       <section className="info-section">
