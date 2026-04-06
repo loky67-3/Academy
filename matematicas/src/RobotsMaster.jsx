@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Play, Pause, RotateCcw, Activity, ShieldAlert, Cpu, Zap, Box, Thermometer, Gauge } from 'lucide-react';
 import Navbar from './Navbar';
 
 // --- PALETA DE COLORES ROBÓTICA ---
@@ -46,11 +45,11 @@ const IndustrialAvocadoDashboard = () => {
       margin: '4rem 0',
       fontFamily: 'Inter, sans-serif'
     }}>
-      {/* HEADER / ALERTS */}
+      {/* HEADER / ALERTS - Sustitución de Lucide por Emojis */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
         <div style={{ textAlign: 'left' }}>
           <h2 style={{ fontSize: '1.5rem', fontWeight: '900', color: '#22c55e', margin: 0, display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <Cpu size={24} /> AVOCADO_KERNEL_V2.4
+            <span style={{ fontSize: '1.5rem' }}>🧠</span> AVOCADO_KERNEL_V2.4
           </h2>
           <p style={{ color: '#94a3b8', fontSize: '0.8rem' }}>LOCATION: SECTOR_7_URUPAN</p>
         </div>
@@ -59,7 +58,7 @@ const IndustrialAvocadoDashboard = () => {
             className="alert-pop"
             style={{ background: ROBOT_UI.danger, padding: '0.5rem 1.5rem', borderRadius: '50px', fontSize: '0.8rem', fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: '8px', boxShadow: `0 0 15px ${ROBOT_UI.danger}66` }}
           >
-            <ShieldAlert size={16} /> {alert}
+            <span>⚠️</span> {alert}
           </div>
         )}
       </div>
@@ -89,10 +88,10 @@ const IndustrialAvocadoDashboard = () => {
 
           <div style={{ display: 'grid', gap: '10px' }}>
             <div style={{ background: '#000', padding: '10px', borderRadius: '10px', display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <Zap size={14} color="#22c55e" /> <span style={{ fontSize: '0.7rem' }}>POWER: 4.2kW</span>
+              <span style={{ color: '#22c55e', fontSize: '0.9rem' }}>⚡</span> <span style={{ fontSize: '0.7rem' }}>POWER: 4.2kW</span>
             </div>
             <div style={{ background: '#000', padding: '10px', borderRadius: '10px', display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <Activity size={14} color="#00f2ff" /> <span style={{ fontSize: '0.7rem' }}>LATENCY: 12ms</span>
+              <span style={{ color: '#00f2ff', fontSize: '0.9rem' }}>📈</span> <span style={{ fontSize: '0.7rem' }}>LATENCY: 12ms</span>
             </div>
           </div>
         </div>
@@ -170,19 +169,19 @@ const IndustrialAvocadoDashboard = () => {
           
           <div style={{ marginBottom: '1.5rem' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#22c55e', marginBottom: '5px' }}>
-              <Box size={14} /> <span style={{ fontSize: '0.7rem' }}>PROCESSED</span>
+              <span>📦</span> <span style={{ fontSize: '0.7rem' }}>PROCESSED</span>
             </div>
             <div style={{ fontSize: '2rem', fontWeight: '900', letterSpacing: '2px' }}>{processed.toLocaleString()}</div>
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', marginBottom: '1.5rem' }}>
             <div style={{ background: '#000', padding: '10px', borderRadius: '10px' }}>
-              <Gauge size={12} color="#00f2ff" />
+              <div style={{ color: '#00f2ff', fontSize: '0.8rem' }}>⏱️</div>
               <div style={{ fontSize: '0.6rem', color: '#94a3b8' }}>SPEED</div>
               <div style={{ fontSize: '0.9rem', fontWeight: 'bold' }}>42 c/m</div>
             </div>
             <div style={{ background: '#000', padding: '10px', borderRadius: '10px' }}>
-              <Thermometer size={12} color={ROBOT_UI.danger} />
+              <div style={{ color: ROBOT_UI.danger, fontSize: '0.8rem' }}>🌡️</div>
               <div style={{ fontSize: '0.6rem', color: '#94a3b8' }}>TEMP</div>
               <div style={{ fontSize: '0.9rem', fontWeight: 'bold' }}>38.4°C</div>
             </div>
@@ -209,21 +208,21 @@ const IndustrialAvocadoDashboard = () => {
           className={`control-btn ${status === 'active' ? 'active' : ''}`}
           style={{ background: '#22c55e', color: '#000' }}
         >
-          <Play size={18} fill="currentColor" /> START SYSTEM
+          <span style={{ fontSize: '1.1rem' }}>▶️</span> START SYSTEM
         </button>
         <button 
           onClick={() => setStatus('paused')}
           className={`control-btn ${status === 'paused' ? 'active' : ''}`}
           style={{ border: '1px solid #ffffff22', color: '#fff' }}
         >
-          <Pause size={18} fill={status === 'paused' ? "currentColor" : "none"} /> PAUSE
+          <span style={{ fontSize: '1.1rem' }}>⏸️</span> PAUSE
         </button>
         <button 
           onClick={() => { setProcessed(0); setPalletLoad(0); setStatus('paused'); }}
           className="control-btn"
           style={{ border: '1px solid #ffffff22', color: '#94a3b8' }}
         >
-          <RotateCcw size={18} /> RESET
+          <span style={{ fontSize: '1.1rem' }}>🔄</span> RESET
         </button>
       </div>
 
