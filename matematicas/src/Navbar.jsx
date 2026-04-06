@@ -74,6 +74,7 @@ const Navbar = () => {
       title: "Programación Avanzada",
       color: "#f43f5e", // Red
       items: [
+        { to: "/c", label: "Arquitectura C", icon: "🔴" },
         { to: "/python", label: "Python Power", icon: "🐍" },
         { to: "/cpp", label: "Arquitectura C++", icon: "⚙️" },
         { to: "/react", label: "React Engine", icon: "⚛️" },

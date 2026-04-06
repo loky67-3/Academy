@@ -21,6 +21,7 @@ import LogicaMatematica from './LogicaMatematica';
 import Multiplicaciones from './Multiplicaciones';
 import PensamientoLogico from './PensamientoLogico';
 import PlanoCartesiano from './PlanoCartesiano';
+import ProgramacionC from './ProgramacionC';
 import Porcentajes from './Porcentajes';
 import Potencias from './Potencias';
 import RaizCuadrada from './RaizCuadrada';
@@ -66,6 +67,7 @@ function App() {
         <Route path="/pensamiento-logico" element={<PensamientoLogico />} /> {/* Keep existing route */}
         <Route path="/bucles" element={<Bucles />} />
         <Route path="/estructuras-datos" element={<EstructurasDatos />} />
+        <Route path="/c" element={<ProgramacionC />} />
         <Route path="/dom" element={<DominandoDOM />} />
         <Route path="/cpp" element={<ProgramacionCPP />} />
         <Route path="/python" element={<ProgramacionPython />} />
