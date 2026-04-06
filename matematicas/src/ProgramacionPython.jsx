@@ -215,7 +215,7 @@ const ExceptionAppleLab = () => {
           <b>FINALLY:</b> Se ejecuta siempre, haya error o no. Ideal para cerrar archivos.
         </p>
       </div>
-    </div>
+    </section>
   );
 };
 
