@@ -410,12 +410,6 @@ const ProgramacionPython = () => {
         </div>
       </section>
 
-      {/* --- NUEVAS SECCIONES EDUCATIVAS --- */}
-      <DictionaryFruitLab />
-      <ShapeLoopLab />
-      <PureLogicSection />
-      <ExceptionAppleLab />
-
       {/* --- DATA METHODS DEEP DIVE --- */}
       <section className="info-section">
         <h2 className="section-title">Dominando <span className="gradient-text">Métodos</span></h2>
