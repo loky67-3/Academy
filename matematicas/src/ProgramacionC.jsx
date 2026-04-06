@@ -26,6 +26,59 @@ const CyberDuo = ({ expression = 'happy', size = 160 }) => {
   );
 };
 
+// --- SECCIÓN DE ESTADÍSTICAS DEL LENGUAJE ---
+const CStatsSection = () => {
+  const red = "#ef4444";
+  return (
+    <section className="info-section" style={{ display: 'flex', gap: '50px', alignItems: 'center', flexWrap: 'wrap', background: 'rgba(239, 68, 68, 0.03)', padding: '4rem', borderRadius: '40px', border: '1px solid #ef444433', margin: '4rem 0' }}>
+      <div style={{ flex: 1, minWidth: '300px' }}>
+        <img 
+          src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800" 
+          alt="Hardware Circuit" 
+          style={{ width: '100%', borderRadius: '25px', border: `3px solid ${red}`, boxShadow: `0 0 30px ${red}44` }} 
+        />
+      </div>
+      <div style={{ flex: 1.5, textAlign: 'left' }}>
+        <h2 style={{ fontSize: '3rem', fontWeight: '900', color: '#fff', marginBottom: '2rem' }}>ESTADÍSTICAS DEL <span style={{ color: red }}>LENGUAJE</span></h2>
+        
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
+          <div style={{ display: 'flex', gap: '25px', alignItems: 'flex-start' }}>
+            <div style={{ fontSize: '3rem', filter: `drop-shadow(0 0 10px ${red})` }}>🛠️</div>
+            <div>
+              <h4 style={{ color: red, fontSize: '1.6rem', marginBottom: '5px' }}>¿Para qué se utiliza?</h4>
+              <p style={{ color: '#94a3b8', fontSize: '1.2rem', lineHeight: '1.5' }}>
+                Es el estándar para crear <b>Sistemas Operativos</b> (Linux, Windows), <b>Controladores de Hardware</b> (Drivers), 
+                <b>Sistemas Embebidos</b> (microondas, satélites, motores) y motores de videojuegos de alto rendimiento.
+              </p>
+            </div>
+          </div>
+
+          <div style={{ display: 'flex', gap: '25px', alignItems: 'flex-start' }}>
+            <div style={{ fontSize: '3rem', filter: `drop-shadow(0 0 10px ${red})` }}>🧗</div>
+            <div>
+              <h4 style={{ color: red, fontSize: '1.6rem', marginBottom: '5px' }}>¿Qué tan difícil es?</h4>
+              <p style={{ color: '#94a3b8', fontSize: '1.2rem', lineHeight: '1.5' }}>
+                <b>Dificultad: Alta / Élite.</b> A diferencia de lenguajes modernos, C no tiene "red de seguridad". Tú eres el responsable de gestionar la memoria y los recursos. Es un reto que te convierte en un ingeniero de verdad.
+              </p>
+            </div>
+          </div>
+
+          <div style={{ display: 'flex', gap: '25px', alignItems: 'flex-start' }}>
+            <div style={{ fontSize: '3rem', filter: `drop-shadow(0 0 10px ${red})` }}>⏳</div>
+            <div>
+              <h4 style={{ color: red, fontSize: '1.6rem', marginBottom: '5px' }}>Tiempo de Dominio</h4>
+              <p style={{ color: '#94a3b8', fontSize: '1.2rem', lineHeight: '1.5' }}>
+                Aprender la sintaxis toma <b>1 mes</b>. Entender la gestión de memoria y punteros toma unos <b>4 a 6 meses</b>. 
+                Dominarlo para proyectos industriales es un camino de <b>años</b> de práctica.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
 // --- VISUALIZADOR DE HARDWARE (MICROCONTROLADOR) ---
 const MicroSVG = () => (
   <svg width="200" height="200" viewBox="0 0 200 200">
@@ -63,6 +116,32 @@ const RobotControlSVG = () => (
     <text x="125" y="185" fill="#fff" fontSize="14" textAnchor="middle">CÓDIGO → ACCIÓN</text>
   </svg>
 );
+
+// --- VISUAL DE MEMORIA Y PUNTEROS ---
+const PointersVisual = () => {
+  const red = "#ef4444";
+  return (
+    <div style={{ background: '#000', padding: '4rem', borderRadius: '40px', border: `2px solid ${red}`, margin: '4rem 0', textAlign: 'center' }}>
+      <h3 style={{ color: '#fff', fontSize: '2.5rem', marginBottom: '3rem', fontWeight: '900' }}>PUNTEROS: EL <span style={{ color: red }}>ADN DE C</span></h3>
+      <div style={{ display: 'flex', gap: '40px', justifyContent: 'center', flexWrap: 'wrap', alignItems: 'center' }}>
+        <div style={{ border: '2px solid #fff', padding: '30px', borderRadius: '20px', textAlign: 'center', width: '200px' }}>
+          <div style={{ fontSize: '0.9rem', color: red, fontWeight: 'bold' }}>VARIABLE 'X'</div>
+          <div style={{ fontSize: '3.5rem', fontWeight: '900', margin: '10px 0' }}>100</div>
+          <div style={{ fontSize: '0.8rem', color: '#94a3b8', fontFamily: 'monospace' }}>ADDR: 0x7FFD</div>
+        </div>
+        <div style={{ fontSize: '4rem', color: red }} className="mobile-hide">⬅️</div>
+        <div style={{ border: `2px solid ${red}`, padding: '30px', borderRadius: '20px', textAlign: 'center', background: 'rgba(239, 68, 68, 0.1)', width: '200px' }}>
+          <div style={{ fontSize: '0.9rem', color: '#fff', fontWeight: 'bold' }}>PUNTERO '*ptr'</div>
+          <div style={{ fontSize: '2rem', fontWeight: '900', color: red, margin: '20px 0' }}>0x7FFD</div>
+          <div style={{ fontSize: '0.8rem', color: '#94a3b8' }}>Guarda la dirección</div>
+        </div>
+      </div>
+      <p style={{ marginTop: '3rem', fontSize: '1.4rem', color: '#94a3b8', maxWidth: '900px', margin: '3rem auto 0', lineHeight: '1.6' }}>
+        Un puntero es una variable mágica: no guarda un número, guarda <b>dónde</b> vive otro número en la memoria RAM. Esto permite que C sea el lenguaje más rápido del mundo.
+      </p>
+    </div>
+  );
+};
 
 // --- VISUAL DE MONITOR DE HARDWARE ---
 const HardwareDisplaySVG = () => (
@@ -373,6 +452,9 @@ const ProgramacionC = () => {
         </div>
       </section>
 
+      {/* --- NEW STATS SECTION --- */}
+      <CStatsSection />
+
       {/* --- HARDWARE CONNECTION --- */}
       <section className="info-section">
         <div style={{ display: 'flex', gap: '100px', alignItems: 'center', flexWrap: 'wrap' }}>
@@ -502,6 +584,9 @@ const ProgramacionC = () => {
           ]}
         />
       </section>
+
+      {/* --- NEW POINTERS VISUAL --- */}
+      <PointersVisual />
 
       {/* --- CONTROL DE FLUJO --- */}
       <section className="info-section" style={{ background: '#000', padding: '5rem', borderRadius: '50px', border: '2px solid #334155' }}>

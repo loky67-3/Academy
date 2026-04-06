@@ -458,15 +458,15 @@ const AprendeIngles = () => {
       <section className="info-section">
         <h2 className="section-title">The <span className="gradient-text">Verb Matrix</span></h2>
         <p className="section-subtitle" style={{ fontSize: '1.3rem', color: '#ffffff' }}>Los 30 verbos más usados. Haz clic en el icono para escuchar.</p>
-        <div style={{ overflowX: 'auto', marginTop: '2rem' }}>
-          <table style={{ width: '100%', borderCollapse: 'collapse', background: 'rgba(0,0,0,0.4)', borderRadius: '20px', overflow: 'hidden', border: '2px solid #a855f7' }}>
+        <div style={{ overflowX: 'auto', marginTop: '2.5rem' }}>
+          <table className="app-table" style={{ border: '2px solid #a855f7' }}>
             <thead>
               <tr style={{ background: '#a855f7', color: '#ffffff' }}>
-                <th style={{ padding: '20px', fontSize: '1.2rem' }}>Verb</th>
-                <th style={{ padding: '20px', fontSize: '1.2rem' }}>Spanish</th>
-                <th style={{ padding: '20px', fontSize: '1.2rem' }}>Past</th>
-                <th style={{ padding: '20px', fontSize: '1.2rem' }}>Future</th>
-                <th style={{ padding: '20px', fontSize: '1.2rem' }}>Listen</th>
+                <th>Verb</th>
+                <th>Spanish</th>
+                <th>Past</th>
+                <th>Future</th>
+                <th>Listen</th>
               </tr>
             </thead>
             <tbody style={{ color: '#ffffff', textAlign: 'center', fontSize: '1.1rem' }}>
@@ -500,7 +500,7 @@ const AprendeIngles = () => {
               onChange={(e) => setFlashInput(e.target.value)}
               onKeyPress={(e) => e.key === 'Enter' && checkFlash()}
               placeholder="Escribe aquí..."
-              style={{ background: 'rgba(255,255,255,0.1)', border: '2px solid #a855f7', color: 'white', padding: '15px', borderRadius: '12px', width: '220px', fontSize: '1.1rem', textAlign: 'center' }}
+              className="app-input" style={{ width: '220px', textAlign: 'center', borderColor: '#a855f7' }}
             />
             <button onClick={checkFlash} className="btn-login" style={{ background: '#a855f7', color: '#ffffff', fontWeight: 'bold' }}>CHECK</button>
           </div>
