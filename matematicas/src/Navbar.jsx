@@ -97,18 +97,18 @@ const Navbar = () => {
       <div className={`mobile-overlay ${isMobileNavOpen ? 'active' : ''}`} onClick={closeAll}>
         <div className="mobile-drawer" onClick={(e) => e.stopPropagation()}>
           <div className="mobile-drawer-header">
-            <span className="logo">EDU<span style={{color: 'var(--neon-blue)'}}>NEON</span></span>
+            <span className="logo" style={{ fontSize: '2.5rem' }}>EDU<span style={{color: 'var(--neon-blue)'}}>NEON</span></span>
           </div>
           <div className="mobile-nav-content">
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '30px', paddingTop: '20px' }}>
-              <div style={{ height: '1px', background: 'rgba(255,255,255,0.1)' }}></div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '40px', paddingTop: '40px' }}>
+              <div style={{ height: '2px', background: 'linear-gradient(90deg, var(--neon-blue), transparent)', margin: '10px 0' }}></div>
               {categories.map((cat, idx) => (
                 <div key={idx}>
-                  <h4 style={{ color: cat.color, marginBottom: '15px', textTransform: 'uppercase', fontSize: '0.8rem' }}>{cat.title}</h4>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
+                  <h4 style={{ color: cat.color, marginBottom: '20px', textTransform: 'uppercase', fontSize: '1rem', letterSpacing: '3px', fontWeight: '900' }}>{cat.title}</h4>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
                     {cat.items.map((item, iIdx) => (
-                      <Link key={iIdx} to={item.to} onClick={closeAll} style={{ color: '#94a3b8', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '10px' }}>
-                        <span>{item.icon}</span> {item.label}
+                      <Link key={iIdx} to={item.to} onClick={closeAll} className="drawer-link">
+                        <span className="drawer-icon">{item.icon}</span> <span className="drawer-label">{item.label}</span>
                       </Link>
                     ))}
                   </div>
@@ -133,6 +133,26 @@ const Navbar = () => {
           -webkit-text-fill-color: transparent;
           font-weight: 900;
         }
+
+        .drawer-link {
+          color: #ffffff;
+          text-decoration: none;
+          display: flex;
+          align-items: center;
+          gap: 20px;
+          font-size: 1.4rem;
+          font-weight: 600;
+          transition: 0.3s;
+          padding: 10px;
+          border-radius: 12px;
+        }
+        .drawer-link:hover {
+          background: rgba(255,255,255,0.05);
+          padding-left: 20px;
+          color: var(--neon-blue);
+        }
+        .drawer-icon { font-size: 1.8rem; }
+
         .navbar {
           display: flex;
           justify-content: space-between;
@@ -205,18 +225,26 @@ const Navbar = () => {
           backdrop-filter: blur(10px);
         }
         .mobile-drawer {
-          width: 85%;
-          max-width: 400px;
+          width: 90%;
+          max-width: 550px;
           height: 100%;
-          background: #020617;
-          padding: 100px 30px 40px;
+          background: rgba(2, 6, 23, 0.98);
+          backdrop-filter: blur(20px);
+          padding: 120px 50px 60px;
           transform: translateX(100%);
           transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
           overflow-y: auto;
-          border-left: 1px solid rgba(255,255,255,0.1);
+          border-left: 2px solid var(--neon-blue);
+          box-shadow: -20px 0 50px rgba(0,0,0,0.5);
         }
         .mobile-overlay.active .mobile-drawer { transform: translateX(0); }
         .mobile-drawer-header { position: absolute; top: 30px; left: 30px; }
+
+        @media (min-width: 1024px) {
+          .mobile-drawer {
+            width: 450px;
+          }
+        }
       `}} />
     </div>
   );

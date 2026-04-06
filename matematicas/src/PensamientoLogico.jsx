@@ -175,15 +175,15 @@ const PensamientoLogico = () => {
   const progress = (points / (exercises.length + 10)) * 100;
 
   return (
-    <div className="home-container" style={{ paddingBottom: '80px', backgroundColor: '#020617', color: 'white' }}>
+    <div className="home-container" style={{ paddingBottom: '120px', backgroundColor: '#020617', color: 'white', paddingLeft: '8%', paddingRight: '5%' }}>
       <Navbar />
 
-      <section className="hero-section" style={{ minHeight: 'auto', padding: '140px 10% 40px' }}>
+      <section className="hero-section" style={{ minHeight: 'auto', padding: '180px 5% 60px', textAlign: 'left' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '30px', flexWrap: 'wrap', justifyContent: 'center' }}>
           <ProfessorNeon expression={botStatus === 'wrong' ? 'sad' : 'happy'} size={120} />
-          <div style={{ textAlign: 'left', maxWidth: '600px' }}>
-            <h1 className="hero-title" style={{ fontSize: 'clamp(2.5rem, 6vw, 4rem)' }}>Pensamiento <span className="gradient-text" style={{ background: 'linear-gradient(90deg, #10b981, #0ea5e9)', WebkitBackgroundClip: 'text' }}>Lógico</span></h1>
-            <p className="hero-subtitle">"¡Bienvenido! Soy tu guía estratégico. Hoy aprenderás a mapear tu mente usando el Método de Flujo. ¡Organiza tu genio!"</p>
+          <div style={{ textAlign: 'left', maxWidth: '800px' }}>
+            <h1 className="hero-title" style={{ fontSize: 'clamp(4rem, 10vw, 6.5rem)', lineHeight: '0.9', fontWeight: '900', marginBottom: '20px' }}>Pensamiento <span className="gradient-text" style={{ background: 'linear-gradient(90deg, #10b981, #0ea5e9)', WebkitBackgroundClip: 'text' }}>Lógico</span></h1>
+            <p className="hero-subtitle" style={{ fontSize: '1.8rem', opacity: 0.9 }}>"Mapea tu mente. Organiza tu genio."</p>
           </div>
         </div>
 
@@ -199,39 +199,38 @@ const PensamientoLogico = () => {
       </section>
 
       <section className="info-section">
-        <h2 className="section-title" style={{ color: 'white' }}>⚡ Desafío Flash Estratégico</h2>
-        <div className="benefit-card" style={{ maxWidth: '600px', margin: '0 auto', border: '2px solid #10b981', background: 'rgba(16, 185, 129, 0.05)', textAlign: 'center', padding: '3rem' }}>
-          <h2 className="section-title" style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>⚡ Desafío Flash Estratégico</h2>
-          <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem' }}>Respuesta rápida: ({flashSolvedCount}/10)</p>
+        <h2 className="section-title" style={{ color: 'white', fontSize: '3.5rem', textAlign: 'left' }}>⚡ Desafío <span className="gradient-text">Flash</span></h2>
+        <div className="benefit-card" style={{ maxWidth: '900px', margin: '2rem 0', border: '3px solid #10b981', background: 'rgba(16, 185, 129, 0.05)', textAlign: 'left', padding: '4rem', borderRadius: '40px' }}>
+          <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem', fontSize: '1.2rem', fontWeight: 'bold', letterSpacing: '3px' }}>STATUS: ({flashSolvedCount}/10)</p>
           
           {flashSolvedCount < 10 ? (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', alignItems: 'center' }}>
-              <div style={{ fontSize: '2.2rem', fontWeight: '900', color: '#10b981' }}>{flashQuest.q}</div>
-              <div style={{ display: 'flex', gap: '15px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
+              <div style={{ fontSize: '4.5rem', fontWeight: '900', color: '#ffffff', textShadow: '0 0 20px rgba(16, 185, 129, 0.4)' }}>{flashQuest.q}</div>
+              <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
                 <input 
                   type="text" value={flashInput}
                   onChange={(e) => setFlashInput(e.target.value)}
                   onKeyPress={(e) => e.key === 'Enter' && checkFlash()}
-                  placeholder="Respuesta"
-                  style={{ background: 'rgba(255,255,255,0.1)', border: '2px solid #10b981', color: 'white', padding: '15px', borderRadius: '12px', width: '180px', fontSize: '1.2rem', textAlign: 'center' }}
+                  placeholder="Escribe..."
+                  style={{ background: 'rgba(255,255,255,0.1)', border: '3px solid #10b981', color: 'white', padding: '20px', borderRadius: '15px', width: '300px', fontSize: '2rem', fontWeight: '900' }}
                 />
-                <button onClick={checkFlash} className="btn-login" style={{ background: '#10b981', color: '#020617', padding: '15px 30px' }}>ENVIAR</button>
+                <button onClick={checkFlash} className="btn-login" style={{ background: '#10b981', color: '#020617', padding: '20px 50px', fontSize: '1.5rem', fontWeight: '900' }}>VALIDAR</button>
               </div>
             </div>
           ) : (
-            <div style={{ color: 'var(--neon-green)', fontWeight: 'bold', fontSize: '1.2rem' }}>¡Arquitecto de Procesos! Has dominado el flujo básico. +10 XP</div>
+            <div style={{ color: 'var(--neon-green)', fontWeight: '900', fontSize: '3rem' }}>¡SISTEMA CALIBRADO! +10 XP</div>
           )}
         </div>
       </section>
 
-      <section className="info-section">
-        <h2 className="section-title">El Método del <span className="gradient-text">Diagrama de Flujo</span></h2>
+      <section className="info-section" style={{ margin: '6rem 0' }}>
+        <h2 className="section-title" style={{ color: 'white', fontSize: '4rem' }}>El Método del <span className="gradient-text">Flujo</span></h2>
         <div className="certificate-section" style={{ gap: '40px', background: 'linear-gradient(rgba(14, 165, 233, 0.05), transparent)', alignItems: 'center' }}>
-          <div className="cert-text" style={{ flex: 1 }}>
-            <p className="hero-subtitle" style={{ textAlign: 'left' }}>
+          <div className="cert-text" style={{ flex: 1.5 }}>
+            <p className="hero-subtitle" style={{ textAlign: 'left', fontSize: '2rem', color: 'white' }}>
               Un diagrama de flujo es un mapa visual de un proceso. Nos permite ver cada paso y cada decisión antes de actuar.
             </p>
-            <ul style={{ color: 'var(--text-secondary)', lineHeight: '2.5', textAlign: 'left' }}>
+            <ul style={{ color: 'var(--text-secondary)', lineHeight: '2.5', textAlign: 'left', fontSize: '1.4rem', marginTop: '2rem' }}>
               <li>🚀 <strong>Eficiencia:</strong> Encuentra el camino más corto.</li>
               <li>🛡️ <strong>Orden:</strong> Evita errores y pasos innecesarios.</li>
               <li>🛠️ <strong>Resolución:</strong> Desglosa problemas grandes en mini-tareas.</li>
@@ -243,28 +242,28 @@ const PensamientoLogico = () => {
         </div>
       </section>
 
-      <section className="info-section">
-        <h2 className="section-title">Tu Diccionario de <span className="gradient-text">Símbolos</span></h2>
-        <p className="section-subtitle">Aprende estas 4 formas y podrás leer cualquier proceso del mundo.</p>
-        <div className="benefits-grid">
-          <div className="benefit-card">
+      <section className="info-section" style={{ margin: '6rem 0' }}>
+        <h2 className="section-title" style={{ color: 'white', fontSize: '4rem' }}>Diccionario <span className="gradient-text">Visual</span></h2>
+        <p className="section-subtitle" style={{ fontSize: '1.8rem' }}>4 formas para leer el mundo.</p>
+        <div className="benefits-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '30px' }}>
+          <div className="benefit-card" style={{ padding: '3rem' }}>
             <FlowSymbolSVG type="start" color="#10b981" />
-            <h4 style={{ marginTop: '1rem' }}>Inicio / Fin</h4>
+            <h4 style={{ marginTop: '1.5rem', fontSize: '1.8rem' }}>Inicio / Fin</h4>
             <p style={{ fontSize: '0.8rem' }}>Marca dónde empieza y dónde termina el viaje lógico.</p>
           </div>
-          <div className="benefit-card">
+          <div className="benefit-card" style={{ padding: '3rem' }}>
             <FlowSymbolSVG type="process" color="#0ea5e9" />
-            <h4 style={{ marginTop: '1rem' }}>Proceso</h4>
+            <h4 style={{ marginTop: '1.5rem', fontSize: '1.8rem' }}>Proceso</h4>
             <p style={{ fontSize: '0.8rem' }}>Una acción o cálculo simple (ej: "Sumar A + B").</p>
           </div>
-          <div className="benefit-card">
+          <div className="benefit-card" style={{ padding: '3rem' }}>
             <FlowSymbolSVG type="decision" color="#fbbf24" />
-            <h4 style={{ marginTop: '1rem' }}>Decisión</h4>
+            <h4 style={{ marginTop: '1.5rem', fontSize: '1.8rem' }}>Decisión</h4>
             <p style={{ fontSize: '0.8rem' }}>Una pregunta que divide el camino en SÍ o NO.</p>
           </div>
-          <div className="benefit-card">
+          <div className="benefit-card" style={{ padding: '3rem' }}>
             <FlowSymbolSVG type="io" color="#a855f7" />
-            <h4 style={{ marginTop: '1rem' }}>Entrada / Salida</h4>
+            <h4 style={{ marginTop: '1.5rem', fontSize: '1.8rem' }}>Entrada / Salida</h4>
             <p style={{ fontSize: '0.8rem' }}>Pedir un dato al usuario o mostrar un resultado.</p>
           </div>
         </div>
