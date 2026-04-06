@@ -63,11 +63,39 @@ const Navbar = () => {
       color: "#a855f7", // Purple
       items: [ 
         { to: "/pensamiento-logico", label: "Pensamiento Lógico Avanzado", icon: "🧠" },
-        { to: "/tablas-verdad", label: "Tablas de Verdad", icon: "📋" },
-        { to: "/bucles", label: "Ciclos y Bucles", icon: "🔁" }, 
-        { to: "/estructuras-datos", label: "Estructuras", icon: "🏗️" }, 
+        { to: "/tablas-verdad", label: "Tablas de Verdad", icon: "📋" }, 
+        { to: "/booleanos", label: "Lógica Booleana", icon: "💡" },
+        { to: "/bucles", label: "Ciclos y Bucles", icon: "🔁" },
+        { to: "/estructuras-datos", label: "Estructuras", icon: "🏗️" },
+        { to: "/dom", label: "Dominando DOM", icon: "🕸️" },
       ]
     },
+    {
+      title: "Programación Avanzada",
+      color: "#f43f5e", // Red
+      items: [
+        { to: "/python", label: "Python Power", icon: "🐍" },
+        { to: "/cpp", label: "Arquitectura C++", icon: "⚙️" },
+        { to: "/react", label: "React Engine", icon: "⚛️" },
+        { to: "/flask", label: "Flask Alchemist", icon: "🧪" },
+        { to: "/sql", label: "SQL Master", icon: "🗄️" },
+        { to: "/editor", label: "God Editor", icon: "💻" },
+      ]
+    },
+    {
+      title: "Ciencias Naturales",
+      color: "#22d3ee", // Cyan
+      items: [
+        { to: "/cuerpo-humano", label: "Cuerpo Humano", icon: "🦴" },
+      ]
+    },
+    {
+      title: "Idiomas",
+      color: "#ec4899", // Pink
+      items: [
+        { to: "/ingles", label: "English Master", icon: "🗣️" },
+      ]
+    }
   ];
 
   return (
