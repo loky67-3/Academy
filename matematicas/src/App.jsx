@@ -36,6 +36,7 @@ import ProgramacionReact from './ProgramacionReact';
 import ProgramacionFlask from './ProgramacionFlask';
 import EditorPro from './EditorPro';
 import CuerpoHumano from './CuerpoHumano';
+import DocumentScanner from './DocumentScanner';
 import RobotsMaster from './RobotsMaster';
 
 function App() {
@@ -78,6 +79,7 @@ function App() {
         <Route path="/flask" element={<ProgramacionFlask />} />
         <Route path="/editor" element={<EditorPro />} />
         <Route path="/cuerpo-humano" element={<CuerpoHumano />} />
+        <Route path="/scanner" element={<DocumentScanner />} />
         <Route path="/robots" element={<RobotsMaster />} />
       </Routes>
     </Router>

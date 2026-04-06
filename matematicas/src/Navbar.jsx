@@ -81,6 +81,7 @@ const Navbar = () => {
         { to: "/flask", label: "Flask Alchemist", icon: "🧪" },
         { to: "/sql", label: "SQL Master", icon: "🗄️" },
         { to: "/editor", label: "God Editor", icon: "💻" },
+        { to: "/scanner", label: "Doc Scanner", icon: "📄" },
         { to: "/robots", label: "Robot Genesis", icon: "🤖" },
       ]
     },
