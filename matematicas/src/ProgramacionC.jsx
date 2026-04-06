@@ -43,6 +43,158 @@ const MicroSVG = () => (
   </svg>
 );
 
+// --- VISUAL DE CONTROL ROBÓTICO ---
+const RobotControlSVG = () => (
+  <svg width="250" height="200" viewBox="0 0 250 200">
+    {/* Circuit Board */}
+    <rect x="20" y="50" width="210" height="120" rx="10" fill="#1e293b" stroke="#ef4444" strokeWidth="3" />
+    {/* Microcontroller */}
+    <rect x="80" y="70" width="90" height="80" fill="#020617" stroke="#fbbf24" strokeWidth="2" />
+    <text x="125" y="115" fill="#fbbf24" fontSize="12" textAnchor="middle" fontWeight="bold">CPU</text>
+    {/* GPIO Pins */}
+    <circle cx="70" cy="80" r="5" fill="#10b981" />
+    <circle cx="70" cy="100" r="5" fill="#10b981" />
+    <circle cx="70" cy="120" r="5" fill="#10b981" />
+    <circle cx="180" cy="80" r="5" fill="#10b981" />
+    <circle cx="180" cy="100" r="5" fill="#10b981" />
+    {/* Robot Icon */}
+    <path d="M125 30 L115 40 L135 40 Z M110 40 L100 50 L140 50 L130 40 Z" fill="#0ea5e9" />
+    <circle cx="120" cy="25" r="10" fill="#0ea5e9" />
+    <text x="125" y="185" fill="#fff" fontSize="14" textAnchor="middle">CÓDIGO → ACCIÓN</text>
+  </svg>
+);
+
+// --- VISUAL DE MONITOR DE HARDWARE ---
+const HardwareDisplaySVG = () => (
+  <svg width="220" height="140" viewBox="0 0 220 140">
+    <rect x="10" y="10" width="200" height="120" rx="10" fill="#000" stroke="#ef4444" strokeWidth="4" />
+    <path d="M30 70 Q 60 30 90 70 T 150 70" fill="none" stroke="#ef4444" strokeWidth="2" opacity="0.5">
+      <animate attributeName="stroke-dasharray" from="0, 200" to="200, 0" dur="3s" repeatCount="indefinite" />
+    </path>
+    <text x="110" y="110" fill="#ef4444" fontSize="12" textAnchor="middle" fontFamily="monospace">TEMP: 45.2 C</text>
+  </svg>
+);
+
+// --- DIAGRAMA DE FLUJO: PROGRAMA C BÁSICO ---
+const CProgramFlowSVG = ({ color = "#ef4444" }) => (
+  <div style={{ background: 'rgba(0,0,0,0.3)', padding: '3rem', borderRadius: '40px', border: `2px solid ${color}`, textAlign: 'center', margin: '2rem 0' }}>
+    <h3 style={{ color: color, fontSize: '1.8rem', marginBottom: '2rem' }}>FLUJO DE UN PROGRAMA C</h3>
+    <svg width="100%" height="450" viewBox="0 0 300 450">
+      <rect x="100" y="10" width="100" height="40" rx="20" fill="none" stroke="white" strokeWidth="3" />
+      <text x="150" y="35" fill="white" fontSize="14" textAnchor="middle" fontWeight="bold">INICIO</text>
+      <path d="M150 50 L150 80" stroke={color} strokeWidth="3" markerEnd="url(#arrowC)" />
+      <path d="M120 80 L180 80 L200 120 L100 120 Z" fill="none" stroke="#fbbf24" strokeWidth="3" />
+      <text x="150" y="105" fill="white" fontSize="12" textAnchor="middle">scanf("...");</text>
+      <path d="M150 120 L150 150" stroke={color} strokeWidth="3" markerEnd="url(#arrowC)" />
+      <path d="M150 150 L220 190 L150 230 L80 190 Z" fill="none" stroke={color} strokeWidth="3" />
+      <text x="150" y="195" fill="white" fontSize="12" textAnchor="middle">¿CONDICIÓN?</text>
+      <path d="M220 190 L250 190 L250 260" stroke="#10b981" strokeWidth="3" markerEnd="url(#arrowC)" />
+      <text x="235" y="180" fill="#10b981" fontSize="12">SÍ</text>
+      <rect x="200" y="260" width="100" height="40" fill="none" stroke="#10b981" strokeWidth="3" />
+      <text x="250" y="285" fill="white" fontSize="12" textAnchor="middle">printf("VERDAD");</text>
+      <path d="M80 190 L50 190 L50 260" stroke="#fbbf24" strokeWidth="3" markerEnd="url(#arrowC)" />
+      <text x="65" y="180" fill="#fbbf24" fontSize="12">NO</text>
+      <rect x="0" y="260" width="100" height="40" fill="none" stroke="#fbbf24" strokeWidth="3" />
+      <text x="50" y="285" fill="white" fontSize="12" textAnchor="middle">printf("FALSO");</text>
+      <path d="M250 300 L250 330 L150 330 L150 360" stroke={color} strokeWidth="3" markerEnd="url(#arrowC)" />
+      <path d="M50 300 L50 330 L150 330" stroke={color} strokeWidth="3" />
+      <rect x="100" y="360" width="100" height="40" rx="20" fill="none" stroke="white" strokeWidth="3" />
+      <text x="150" y="385" fill="white" fontSize="14" textAnchor="middle" fontWeight="bold">FIN</text>
+      <defs>
+        <marker id="arrowC" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="context-stroke" />
+        </marker>
+      </defs>
+    </svg>
+    <p style={{ color: color, fontSize: '1.2rem', fontWeight: 'bold', marginTop: '20px' }}>DIAGRAMA DE FLUJO BÁSICO</p>
+  </div>
+);
+
+// --- DIAGRAMA DE FLUJO: BUCLE WHILE NEÓN ---
+const LoopFlowSVG = ({ color = "#ef4444" }) => (
+  <div style={{ background: 'rgba(0,0,0,0.3)', padding: '2rem', borderRadius: '30px', border: `2px solid ${color}`, textAlign: 'center' }}>
+    <svg width="200" height="250" viewBox="0 0 200 250">
+      <rect x="60" y="10" width="80" height="30" rx="15" fill="none" stroke="white" strokeWidth="2" />
+      <text x="100" y="30" fill="white" fontSize="10" textAnchor="middle">INICIO</text>
+      
+      <path d="M100 40 L100 70" stroke={color} strokeWidth="2" markerEnd="url(#arrow)" />
+      
+      {/* Rombo de decisión */}
+      <path d="M100 70 L140 100 L100 130 L60 100 Z" fill="none" stroke={color} strokeWidth="3" />
+      <text x="100" y="105" fill="white" fontSize="9" textAnchor="middle">¿CONDICIÓN?</text>
+
+      {/* Ruta SÍ */}
+      <path d="M100 130 L100 170" stroke="#10b981" strokeWidth="3" markerEnd="url(#arrow)" />
+      <text x="110" y="150" fill="#10b981" fontSize="10">SÍ</text>
+      <rect x="60" y="170" width="80" height="30" fill="none" stroke="#10b981" strokeWidth="2" />
+      <text x="100" y="190" fill="white" fontSize="9" textAnchor="middle">EJECUTAR</text>
+
+      {/* Retorno */}
+      <path d="M60 185 L30 185 L30 100 L60 100" stroke={color} strokeWidth="2" fill="none" strokeDasharray="4" markerEnd="url(#arrow)" />
+
+      {/* Ruta NO */}
+      <path d="M140 100 L170 100 L170 220 L100 220" stroke="#ef4444" strokeWidth="2" fill="none" markerEnd="url(#arrow)" />
+      <text x="155" y="90" fill="#ef4444" fontSize="10">NO</text>
+      <rect x="60" y="210" width="80" height="25" rx="12" fill="none" stroke="white" strokeWidth="2" />
+      <text x="100" y="227" fill="white" fontSize="10" textAnchor="middle">FIN</text>
+      
+      <defs><marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="context-stroke" /></marker></defs>
+    </svg>
+    <p style={{ color: color, fontSize: '0.9rem', fontWeight: 'bold', marginTop: '10px' }}>LÓGICA DE ITERACIÓN</p>
+  </div>
+);
+
+// --- DIAGRAMA DE FLUJO: BUCLE FOR DETALLADO ---
+const ComplexCFlowchartSVG = ({ color = "#ef4444" }) => (
+  <div style={{ background: 'rgba(0,0,0,0.3)', padding: '3rem', borderRadius: '40px', border: `2px solid ${color}`, textAlign: 'center', margin: '2rem 0' }}>
+    <h3 style={{ color: color, fontSize: '1.8rem', marginBottom: '2rem' }}>BUCLE FOR DETALLADO</h3>
+    <svg width="100%" height="400" viewBox="0 0 300 400">
+      {/* INICIO */}
+      <rect x="100" y="10" width="100" height="40" rx="20" fill="none" stroke="white" strokeWidth="3" />
+      <text x="150" y="35" fill="white" fontSize="14" textAnchor="middle" fontWeight="bold">INICIO</text>
+      <path d="M150 50 L150 80" stroke={color} strokeWidth="3" markerEnd="url(#arrowC)" />
+
+      {/* Inicialización (for) */}
+      <rect x="100" y="80" width="100" height="40" fill="none" stroke="#0ea5e9" strokeWidth="3" />
+      <text x="150" y="105" fill="white" fontSize="12" textAnchor="middle">i = 0</text>
+      <path d="M150 120 L150 150" stroke={color} strokeWidth="3" markerEnd="url(#arrowC)" />
+
+      {/* Condición Bucle (for) */}
+      <path d="M150 150 L220 190 L150 230 L80 190 Z" fill="none" stroke={color} strokeWidth="3" />
+      <text x="150" y="195" fill="white" fontSize="12" textAnchor="middle">¿i &lt; N?</text>
+
+      {/* Ruta SÍ (Bucle) */}
+      <path d="M150 230 L150 260" stroke="#10b981" strokeWidth="3" markerEnd="url(#arrowC)" />
+      <text x="165" y="245" fill="#10b981" fontSize="12">SÍ</text>
+
+      {/* Cuerpo del Bucle (Proceso) */}
+      <rect x="100" y="260" width="100" height="40" fill="none" stroke="#10b981" strokeWidth="3" />
+      <text x="150" y="285" fill="white" fontSize="12" textAnchor="middle">Hacer Tarea</text>
+      <path d="M150 300 L150 330" stroke={color} strokeWidth="3" markerEnd="url(#arrowC)" />
+
+      {/* Actualización (for) */}
+      <rect x="100" y="330" width="100" height="40" fill="none" stroke="#a855f7" strokeWidth="3" />
+      <text x="150" y="355" fill="white" fontSize="12" textAnchor="middle">i++</text>
+
+      {/* Retorno al Bucle */}
+      <path d="M200 350 L230 350 L230 190 L220 190" stroke={color} strokeWidth="2" fill="none" strokeDasharray="4" markerEnd="url(#arrowC)" />
+
+      {/* Ruta NO (Bucle) */}
+      <path d="M80 190 L50 190 L50 380 L100 380" stroke="#ef4444" strokeWidth="3" fill="none" markerEnd="url(#arrowC)" />
+      <text x="65" y="180" fill="#ef4444" fontSize="12">NO</text>
+      <rect x="100" y="380" width="100" height="40" rx="20" fill="none" stroke="white" strokeWidth="3" />
+      <text x="150" y="405" fill="white" fontSize="14" textAnchor="middle" fontWeight="bold">FIN</text>
+      
+      <defs>
+        <marker id="arrowC" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="context-stroke" />
+        </marker>
+      </defs>
+    </svg>
+    <p style={{ color: color, fontSize: '1.2rem', fontWeight: 'bold', marginTop: '20px' }}>BUCLE FOR DETALLADO</p>
+  </div>
+);
+
 // --- BLOQUE DE CÓDIGO CON FLECHAS NEÓN ---
 const CCode = ({ title, code, annotations = [] }) => (
   <div style={{ background: '#000', borderRadius: '25px', border: '3px solid #ef4444', margin: '3rem 0', position: 'relative', overflow: 'hidden' }}>
@@ -51,7 +203,7 @@ const CCode = ({ title, code, annotations = [] }) => (
       <span>KERNEL_C</span>
     </div>
     <div style={{ padding: '40px', position: 'relative' }}>
-      <pre style={{ margin: 0, color: '#fff', fontSize: '1.4rem', fontFamily: 'monospace', lineHeight: '1.7' }}>
+      <pre style={{ margin: 0, color: '#ffffff', fontSize: '1.4rem', fontFamily: 'monospace', lineHeight: '1.7' }}>
         <code>{code}</code>
       </pre>
       {annotations.map((ann, i) => (
@@ -168,6 +320,37 @@ const ProgramacionC = () => {
             <HardwareDisplaySVG />
           </div>
         </div>
+      </section>
+
+      {/* --- C Y EL CONTROL DE HARDWARE --- */}
+      <section className="info-section">
+        <h2 style={{ fontSize: '4.5rem', fontWeight: '900', textAlign: 'left', marginTop: '6rem' }}>C: El Lenguaje del <span style={{ color: '#ef4444' }}>Control Físico</span></h2>
+        <p style={{ fontSize: '1.8rem', color: '#94a3b8', textAlign: 'left', marginBottom: '4rem' }}>
+          Tu código se convierte en movimiento, luz y sonido. C es la voz directa del procesador.
+        </p>
+        
+        <div style={{ display: 'flex', gap: '60px', alignItems: 'center', flexWrap: 'wrap' }}>
+          <div style={{ flex: 1.5, textAlign: 'left' }}>
+            <h3 style={{ color: '#ef4444', fontSize: '2.5rem', marginBottom: '1.5rem' }}>Manipulación Directa</h3>
+            <p style={{ fontSize: '1.5rem', color: '#fff', lineHeight: '1.6' }}>
+              Con C, no hay capas de abstracción. Puedes acceder directamente a los registros de memoria de un microcontrolador,
+              encendiendo LEDs, leyendo sensores o moviendo motores con precisión milimétrica.
+            </p>
+            <ul style={{ color: '#94a3b8', fontSize: '1.2rem', lineHeight: '2', marginTop: '2rem' }}>
+              <li>⚙️ **Acceso Directo:** Control total sobre el hardware.</li>
+              <li>⚡ **Velocidad:** Ejecución ultrarrápida, crucial para sistemas en tiempo real.</li>
+              <li>💡 **Eficiencia:** Optimización de recursos, ideal para dispositivos con poca memoria.</li>
+            </ul>
+          </div>
+          <div style={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
+            <RobotControlSVG />
+          </div>
+        </div>
+        <CCode 
+          title="control_led.c"
+          code={`#define LED_PIN 13\n\nvoid setup() {\n  pinMode(LED_PIN, OUTPUT); // Configura el pin como salida\n}\n\nvoid loop() {\n  digitalWrite(LED_PIN, HIGH); // Enciende el LED\n  delay(1000);                 // Espera 1 segundo\n  digitalWrite(LED_PIN, LOW);  // Apaga el LED\n  delay(1000);                 // Espera 1 segundo\n}`}
+          annotations={[{ top: '20px', text: 'Define el pin del LED' }, { top: '55px', text: 'Función de configuración inicial' }, { top: '100px', text: 'Bucle principal: se repite infinitamente' }, { top: '135px', text: 'Enciende el LED (HIGH = 1)' }, { top: '170px', text: 'Retraso en milisegundos' }]}
+        />
       </section>
 
       {/* --- MÉTODO DE FLUJO --- */}
@@ -312,6 +495,37 @@ const ProgramacionC = () => {
             {`1. #include <stdio.h>   // BIBLIOTECAS\n2. #define MAX 100       // MACROS\n3. int global_var;       // VARIABLES GLOBALES\n4. void func();          // PROTOTIPOS\n5. int main() { ... }    // PUNTO DE ENTRADA`}
           </pre>
         </div>
+      </section>
+
+      {/* --- FLUJO DE CONTROL AVANZADO: BUCLE FOR --- */}
+      <section className="info-section">
+        <h2 style={{ fontSize: '4.5rem', fontWeight: '900', textAlign: 'left', marginTop: '6rem' }}>FLUJO DE CONTROL <span style={{ color: '#ef4444' }}>AVANZADO: BUCLE FOR</span></h2>
+        <p style={{ fontSize: '1.8rem', color: '#94a3b8', textAlign: 'left', marginBottom: '4rem' }}>
+          Cuando necesitas repetir una acción un número específico de veces, el bucle `for` es tu mejor aliado.
+        </p>
+        
+        <div style={{ display: 'flex', gap: '60px', alignItems: 'center', flexWrap: 'wrap' }}>
+          <div style={{ flex: 1.5, textAlign: 'left' }}>
+            <h3 style={{ color: '#ef4444', fontSize: '2.5rem', marginBottom: '1.5rem' }}>La Estructura FOR</h3>
+            <p style={{ fontSize: '1.5rem', color: '#fff', lineHeight: '1.6' }}>
+              El bucle `for` condensa la inicialización, la condición y la actualización en una sola línea,
+              haciéndolo muy eficiente para iterar sobre colecciones o realizar tareas repetitivas.
+            </p>
+            <ul style={{ color: '#94a3b8', fontSize: '1.2rem', lineHeight: '2', marginTop: '2rem' }}>
+              <li>🔄 **Inicialización:** `int i = 0;` (Dónde empieza el contador).</li>
+              <li>❓ **Condición:** `i < 10;` (Mientras sea verdad, el bucle continúa).</li>
+              <li>📈 **Actualización:** `i++` (Cómo cambia el contador en cada vuelta).</li>
+            </ul>
+          </div>
+          <div style={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
+            <ComplexCFlowchartSVG />
+          </div>
+        </div>
+        <CCode 
+          title="bucle_for.c"
+          code={`for (int i = 0; i < 5; i++) {\n    printf("Iteración: %d\\n", i);\n    if (i == 2) {\n        printf("¡Mitad del camino!\\n");\n    }\n}`}
+          annotations={[{ top: '20px', text: 'Inicialización, Condición, Actualización' }, { top: '55px', text: 'Cuerpo del bucle: se repite 5 veces' }, { top: '90px', text: 'Decisión interna: ¿es la iteración 2?' }]}
+        />
       </section>
 
       {/* --- EXERCISE LAB --- */}
