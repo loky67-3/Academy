@@ -195,6 +195,90 @@ const ComplexCFlowchartSVG = ({ color = "#ef4444" }) => (
   </div>
 );
 
+// --- DISEÑO MAESTRO: BRAZO ROBÓTICO JARVIS-STYLE ---
+const JarvisArmSVG = () => {
+  const red = "#ef4444";
+  return (
+    <div style={{ background: 'rgba(0,0,0,0.4)', padding: '5rem', borderRadius: '60px', border: `3px solid ${red}`, boxShadow: `0 0 50px ${red}55`, marginTop: '6rem' }}>
+      <h3 style={{ color: red, fontSize: '2rem', marginBottom: '2rem', letterSpacing: '5px', fontWeight: '900' }}>[ HARDWARE UNIT: ARM_DEPOLOYED ]</h3>
+      <svg width="100%" height="650" viewBox="0 0 800 650" style={{ filter: `drop-shadow(0 0 20px ${red})` }}>
+        {/* Base Principal */}
+        <path d="M150 600 H650 L680 640 H120 Z" fill="none" stroke={red} strokeWidth="8" strokeLinejoin="round" />
+        <path d="M200 570 H600 L620 600 H180 Z" fill="none" stroke={red} strokeWidth="6" />
+        {/* Tornillos en la base */}
+        <circle cx="250" cy="615" r="8" fill={red} />
+        <circle cx="550" cy="615" r="8" fill={red} />
+        <circle cx="170" cy="585" r="6" fill={red} />
+        <circle cx="630" cy="585" r="6" fill={red} />
+        
+        {/* Pistones Hidráulicos */}
+        <rect x="300" y="450" width="25" height="100" fill="none" stroke={red} strokeWidth="6" />
+        <rect x="475" y="450" width="25" height="100" fill="none" stroke={red} strokeWidth="6" />
+        <line x1="312" y1="450" x2="312" y2="350" stroke={red} strokeWidth="10" />
+        <line x1="487" y1="450" x2="487" y2="350" stroke={red} strokeWidth="10" />
+        {/* Tornillos en pistones */}
+        <circle cx="312" cy="440" r="5" fill="white" />
+        <circle cx="312" cy="360" r="5" fill="white" />
+        <circle cx="487" cy="440" r="5" fill="white" />
+        <circle cx="487" cy="360" r="5" fill="white" />
+
+        {/* Mangueras y Tubos Enredados */}
+        <path d="M250 580 Q 180 500 280 380" fill="none" stroke={red} strokeWidth="3" strokeDasharray="8,8">
+          <animate attributeName="stroke-dashoffset" from="20" to="0" dur="2s" repeatCount="indefinite" />
+        </path>
+        <path d="M550 580 Q 620 500 520 380" fill="none" stroke={red} strokeWidth="3" strokeDasharray="12,6" />
+        <path d="M400 570 C 450 480 350 400 400 300" fill="none" stroke={red} strokeWidth="2" opacity="0.7" />
+        <path d="M350 500 Q 300 450 380 400" fill="none" stroke={red} strokeWidth="2.5" strokeDasharray="6,3" />
+        <path d="M450 500 Q 500 450 420 400" fill="none" stroke={red} strokeWidth="2.5" strokeDasharray="6,3" />
+
+        {/* Gran Tuerca Circular Joint */}
+        <circle cx="400" cy="320" r="80" fill="none" stroke={red} strokeWidth="12" />
+        {[0, 45, 90, 135, 180, 225, 270, 315].map((deg, i) => (
+          <circle key={i} cx={400 + 65 * Math.cos(deg * Math.PI / 180)} cy={320 + 65 * Math.sin(deg * Math.PI / 180)} r="10" fill={red} />
+        ))}
+        <circle cx="400" cy="320" r="30" fill="none" stroke={red} strokeWidth="6" />
+        <path d="M370 320 L430 320 M400 290 L400 350" stroke={red} strokeWidth="3" />
+        {/* Tornillos en el joint */}
+        <circle cx="400" cy="320" r="15" fill="white" />
+        <path d="M390 310 L410 330 M390 330 L410 310" stroke="#000" strokeWidth="2" />
+
+        {/* Brazo Metálico Grueso (Doble Fierro) */}
+        <g transform="rotate(-20, 400, 320)"> {/* Rotación para darle más dinamismo */}
+          <rect x="100" y="290" width="280" height="20" fill="none" stroke={red} strokeWidth="8" rx="8" />
+          <rect x="100" y="330" width="280" height="20" fill="none" stroke={red} strokeWidth="8" rx="8" />
+          {/* Placa de conexión */}
+          <rect x="70" y="280" width="50" height="80" fill="none" stroke={red} strokeWidth="6" rx="8" />
+          {/* Tornillos en la placa */}
+          <circle cx="95" cy="300" r="6" fill="white" />
+          <circle cx="95" cy="340" r="6" fill="white" />
+          {/* Detalles internos del brazo */}
+          <line x1="120" y1="300" x2="360" y2="300" stroke={red} strokeWidth="2" strokeDasharray="4,4" />
+          <line x1="120" y1="340" x2="360" y2="340" stroke={red} strokeWidth="2" strokeDasharray="4,4" />
+          
+          {/* Mano Robótica 3 Dedos */}
+          <g transform="translate(60, 320)"> {/* Ajuste de posición de la mano */}
+            {/* Dedo Superior */}
+            <path d="M0 -30 L-50 -60 L-90 -50" fill="none" stroke={red} strokeWidth="10" strokeLinecap="round" strokeLinejoin="round">
+              <animateTransform attributeName="transform" type="rotate" values="0; -5; 0" dur="3s" repeatCount="indefinite" />
+            </path>
+            {/* Dedo Medio */}
+            <path d="M0 0 L-70 0 L-110 10" fill="none" stroke={red} strokeWidth="10" strokeLinecap="round" strokeLinejoin="round" />
+            {/* Dedo Inferior */}
+            <path d="M0 30 L-50 60 L-90 50" fill="none" stroke={red} strokeWidth="10" strokeLinecap="round" strokeLinejoin="round">
+              <animateTransform attributeName="transform" type="rotate" values="0; 5; 0" dur="3s" repeatCount="indefinite" />
+            </path>
+            {/* Articulaciones de los dedos */}
+            <circle cx="-30" cy="-20" r="6" fill="white" />
+            <circle cx="-30" cy="20" r="6" fill="white" />
+            <circle cx="-60" cy="0" r="6" fill="white" />
+          </g>
+        </g>
+      </svg>
+      <p style={{ color: red, marginTop: '2rem', fontSize: '1.2rem', fontFamily: 'monospace', fontWeight: 'bold' }}>ESTADO: ACTIVO // BRAZO_SERIAL_099</p>
+    </div>
+  );
+};
+
 // --- BLOQUE DE CÓDIGO CON FLECHAS NEÓN ---
 const CCode = ({ title, code, annotations = [] }) => (
   <div style={{ background: '#000', borderRadius: '25px', border: '3px solid #ef4444', margin: '3rem 0', position: 'relative', overflow: 'hidden' }}>
@@ -513,7 +597,7 @@ const ProgramacionC = () => {
             </p>
             <ul style={{ color: '#94a3b8', fontSize: '1.2rem', lineHeight: '2', marginTop: '2rem' }}>
               <li>🔄 **Inicialización:** `int i = 0;` (Dónde empieza el contador).</li>
-              <li>❓ **Condición:** `i < 10;` (Mientras sea verdad, el bucle continúa).</li>
+              <li>❓ **Condición:** `i  10;` (Mientras sea verdad, el bucle continúa).</li>
               <li>📈 **Actualización:** `i++` (Cómo cambia el contador en cada vuelta).</li>
             </ul>
           </div>
@@ -591,6 +675,11 @@ const ProgramacionC = () => {
           </div>
         </section>
       )}
+
+      {/* --- SECCIÓN DEL BRAZO ROBÓTICO --- */}
+      <section className="info-section">
+        <JarvisArmSVG />
+      </section>
 
       <div style={{ textAlign: 'center', marginTop: '80px' }}>
         <button className="btn-login" style={{ background: '#fff', color: '#000', padding: '20px 60px', fontSize: '1.5rem', fontWeight: '900' }} onClick={() => navigate('/')}>VOLVER AL MAINFRAME</button>
