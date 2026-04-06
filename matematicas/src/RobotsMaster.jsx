@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Play, Pause, RotateCcw, Activity, ShieldAlert, Cpu, Zap, Box, Thermometer, Gauge } from 'lucide-react';
 import Navbar from './Navbar';
 
 // --- PALETA DE COLORES ROBÓTICA ---
@@ -9,6 +11,239 @@ const ROBOT_UI = {
   danger: '#ff003c', // Rojo (Terminator Eye)
   warning: '#f3ff00', // Amarillo (Industrial)
   bg: '#020617'
+};
+
+// --- COMPONENTE: DASHBOARD INDUSTRIAL DE AGUACATES ---
+const IndustrialAvocadoDashboard = () => {
+  const [status, setStatus] = useState('active'); // active, paused, error
+  const [processed, setProcessed] = useState(1240);
+  const [palletLoad, setPalletLoad] = useState(65);
+  const [alert, setAlert] = useState(null);
+
+  // Simulación de datos en vivo
+  useEffect(() => {
+    if (status !== 'active') return;
+    const interval = setInterval(() => {
+      setProcessed(p => p + 1);
+      setPalletLoad(l => (l >= 100 ? 0 : l + 0.5));
+      
+      // Simular alerta aleatoria
+      if (Math.random() > 0.95) {
+        setAlert("CAJA MAL POSICIONADA - SENSOR 04");
+        setTimeout(() => setAlert(null), 3000);
+      }
+    }, 2000);
+    return () => clearInterval(interval);
+  }, [status]);
+
+  return (
+    <div className="industrial-dashboard" style={{
+      background: '#0a0a0a',
+      borderRadius: '2rem',
+      border: `1px solid ${status === 'error' ? ROBOT_UI.danger : '#22c55e44'}`,
+      padding: '2rem',
+      boxShadow: `0 0 40px ${status === 'active' ? '#22c55e22' : 'rgba(0,0,0,0.5)'}`,
+      color: '#fff',
+      margin: '4rem 0',
+      fontFamily: 'Inter, sans-serif'
+    }}>
+      {/* HEADER / ALERTS */}
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
+        <div style={{ textAlign: 'left' }}>
+          <h2 style={{ fontSize: '1.5rem', fontWeight: '900', color: '#22c55e', margin: 0, display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <Cpu size={24} /> AVOCADO_KERNEL_V2.4
+          </h2>
+          <p style={{ color: '#94a3b8', fontSize: '0.8rem' }}>LOCATION: SECTOR_7_URUPAN</p>
+        </div>
+        <AnimatePresence>
+          {alert && (
+            <motion.div 
+              initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }}
+              style={{ background: ROBOT_UI.danger, padding: '0.5rem 1.5rem', borderRadius: '50px', fontSize: '0.8rem', fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: '8px', boxShadow: `0 0 15px ${ROBOT_UI.danger}66` }}
+            >
+              <ShieldAlert size={16} /> {alert}
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr 1fr', gap: '1.5rem', minHeight: '400px' }}>
+        
+        {/* PANEL IZQUIERDO: ESTADO */}
+        <div className="glass-panel" style={{ background: 'rgba(255,255,255,0.03)', padding: '1.5rem', borderRadius: '1.5rem', border: '1px solid #ffffff11' }}>
+          <h4 style={{ color: '#94a3b8', fontSize: '0.7rem', textTransform: 'uppercase', marginBottom: '1.5rem' }}>System Status</h4>
+          
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '2rem' }}>
+            <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: status === 'active' ? '#22c55e' : (status === 'paused' ? ROBOT_UI.warning : ROBOT_UI.danger), boxShadow: `0 0 10px ${status === 'active' ? '#22c55e' : ROBOT_UI.danger}` }}>
+              {status === 'active' && <motion.div animate={{ scale: [1, 1.5, 1], opacity: [1, 0, 1] }} transition={{ repeat: Infinity, duration: 2 }} style={{ width: '100%', height: '100%', borderRadius: '50%', background: '#22c55e' }} />}
+            </div>
+            <span style={{ fontWeight: 'bold', textTransform: 'uppercase' }}>{status}</span>
+          </div>
+
+          <div style={{ marginBottom: '2rem' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.7rem', marginBottom: '8px', color: '#94a3b8' }}>
+              <span>EFFICIENCY</span>
+              <span>94%</span>
+            </div>
+            <div style={{ height: '6px', background: '#1e293b', borderRadius: '10px' }}>
+              <motion.div animate={{ width: '94%' }} style={{ height: '100%', background: '#22c55e', borderRadius: '10px', boxShadow: '0 0 10px #22c55e44' }} />
+            </div>
+          </div>
+
+          <div style={{ display: 'grid', gap: '10px' }}>
+            <div style={{ background: '#000', padding: '10px', borderRadius: '10px', display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <Zap size={14} color="#22c55e" /> <span style={{ fontSize: '0.7rem' }}>POWER: 4.2kW</span>
+            </div>
+            <div style={{ background: '#000', padding: '10px', borderRadius: '10px', display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <Activity size={14} color="#00f2ff" /> <span style={{ fontSize: '0.7rem' }}>LATENCY: 12ms</span>
+            </div>
+          </div>
+        </div>
+
+        {/* PANEL CENTRAL: VISUALIZACIÓN DEL ROBOT */}
+        <div style={{ position: 'relative', overflow: 'hidden', background: 'radial-gradient(circle, #111 0%, #000 100%)', borderRadius: '1.5rem', border: '1px solid #ffffff05' }}>
+          {/* Grid de fondo */}
+          <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(#ffffff05 1px, transparent 1px), linear-gradient(90deg, #ffffff05 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
+          
+          <svg viewBox="0 0 400 300" style={{ width: '100%', height: '100%', position: 'relative', zIndex: 1 }}>
+            {/* Banda Transportadora */}
+            <rect x="50" y="240" width="300" height="10" fill="#1e293b" />
+            <motion.line x1="50" y1="245" x2="350" y2="245" stroke="#22c55e" strokeWidth="2" strokeDasharray="10,10" animate={{ strokeDashoffset: [0, -20] }} transition={{ repeat: Infinity, duration: 1, ease: "linear" }} />
+
+            {/* Cajas en la banda */}
+            {status === 'active' && [0, 1, 2].map(i => (
+              <motion.g key={i} initial={{ x: -50 }} animate={{ x: 450 }} transition={{ repeat: Infinity, duration: 4, delay: i * 1.5, ease: "linear" }}>
+                <rect x="0" y="210" width="30" height="30" fill="rgba(190, 242, 100, 0.2)" stroke="#bef264" />
+                <text x="15" y="230" fill="#bef264" fontSize="6" textAnchor="middle">AVO</text>
+              </motion.g>
+            ))}
+
+            {/* BRAZO ROBÓTICO NEÓN */}
+            <g transform="translate(200, 240)">
+              {/* Base */}
+              <rect x="-30" y="0" width="60" height="20" fill="#1e293b" />
+              
+              {/* Brazo Principal */}
+              <motion.g animate={{ rotate: status === 'active' ? [-10, 10, -10] : 0 }} transition={{ repeat: Infinity, duration: 3 }}>
+                <rect x="-5" y="-100" width="10" height="100" fill={ROBOT_UI.primary} />
+                {/* Mangueras animadas */}
+                <motion.path d="M5 -80 Q 30 -50 5 0" fill="none" stroke={ROBOT_UI.primary} strokeWidth="1" strokeDasharray="4,2" animate={{ strokeDashoffset: [0, 10] }} transition={{ repeat: Infinity, duration: 0.5, ease: "linear" }} opacity="0.5" />
+                
+                {/* Articulación 2 */}
+                <g transform="translate(0, -100)">
+                  <circle r="12" fill="#000" stroke={ROBOT_UI.warning} strokeWidth="2" />
+                  <motion.g animate={{ rotate: status === 'active' ? [45, 90, 45] : 45 }} transition={{ repeat: Infinity, duration: 3 }}>
+                    <rect x="-4" y="-80" width="8" height="80" fill={ROBOT_UI.primary} />
+                    
+                    {/* Gripper / Pinza */}
+                    <g transform="translate(0, -80)">
+                      <path d="M-15 0 L15 0 M-15 0 L-10 15 M15 0 L10 15" stroke={ROBOT_UI.danger} strokeWidth="3" />
+                      {/* Sensor Laser */}
+                      <motion.line x1="0" y1="0" x2="0" y2="100" stroke={ROBOT_UI.primary} strokeWidth="1" animate={{ opacity: [0, 0.8, 0] }} transition={{ repeat: Infinity, duration: 0.2 }} />
+                    </g>
+                  </motion.g>
+                </g>
+              </motion.g>
+            </g>
+
+            {/* Tarima (Pallet) */}
+            <g transform="translate(300, 240)">
+              <rect x="0" y="0" width="60" height="10" fill="#475569" />
+              {/* Cajas apiladas */}
+              <rect x="5" y="-20" width="20" height="20" fill="rgba(34, 197, 94, 0.2)" stroke="#22c55e" />
+              <rect x="30" y="-20" width="20" height="20" fill="rgba(34, 197, 94, 0.2)" stroke="#22c55e" />
+              {palletLoad > 50 && <rect x="15" y="-40" width="20" height="20" fill="rgba(34, 197, 94, 0.2)" stroke="#22c55e" />}
+            </g>
+          </svg>
+
+          {/* Overlay de Datos en el visual */}
+          <div style={{ position: 'absolute', bottom: '10px', left: '10px', fontSize: '0.6rem', color: ROBOT_UI.primary, fontFamily: 'monospace' }}>
+            AUTO_SCAN: ENABLED <br/>
+            TORQUE_LIMIT: 45Nm
+          </div>
+        </div>
+
+        {/* PANEL DERECHO: REAL TIME DATA */}
+        <div className="glass-panel" style={{ background: 'rgba(255,255,255,0.03)', padding: '1.5rem', borderRadius: '1.5rem', border: '1px solid #ffffff11' }}>
+          <h4 style={{ color: '#94a3b8', fontSize: '0.7rem', textTransform: 'uppercase', marginBottom: '1.5rem' }}>Live Metrics</h4>
+          
+          <div style={{ marginBottom: '1.5rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#22c55e', marginBottom: '5px' }}>
+              <Box size={14} /> <span style={{ fontSize: '0.7rem' }}>PROCESSED</span>
+            </div>
+            <div style={{ fontSize: '2rem', fontWeight: '900', letterSpacing: '2px' }}>{processed.toLocaleString()}</div>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', marginBottom: '1.5rem' }}>
+            <div style={{ background: '#000', padding: '10px', borderRadius: '10px' }}>
+              <Gauge size={12} color="#00f2ff" />
+              <div style={{ fontSize: '0.6rem', color: '#94a3b8' }}>SPEED</div>
+              <div style={{ fontSize: '0.9rem', fontWeight: 'bold' }}>42 c/m</div>
+            </div>
+            <div style={{ background: '#000', padding: '10px', borderRadius: '10px' }}>
+              <Thermometer size={12} color={ROBOT_UI.danger} />
+              <div style={{ fontSize: '0.6rem', color: '#94a3b8' }}>TEMP</div>
+              <div style={{ fontSize: '0.9rem', fontWeight: 'bold' }}>38.4°C</div>
+            </div>
+          </div>
+
+          <div style={{ textAlign: 'left' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.7rem', marginBottom: '8px' }}>
+              <span>PALLET CAPACITY</span>
+              <span style={{ color: '#22c55e' }}>{Math.round(palletLoad)}%</span>
+            </div>
+            <div style={{ height: '15px', background: '#1e293b', borderRadius: '4px', overflow: 'hidden', display: 'flex', gap: '2px', padding: '2px' }}>
+              {[...Array(10)].map((_, i) => (
+                <div key={i} style={{ flex: 1, background: (i * 10) < palletLoad ? '#22c55e' : '#0f172a', borderRadius: '1px' }} />
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* PANEL INFERIOR: CONTROLES */}
+      <div style={{ display: 'flex', gap: '1rem', marginTop: '1.5rem', justifyContent: 'center' }}>
+        <button 
+          onClick={() => setStatus('active')}
+          className={`control-btn ${status === 'active' ? 'active' : ''}`}
+          style={{ background: '#22c55e', color: '#000' }}
+        >
+          <Play size={18} fill="currentColor" /> START SYSTEM
+        </button>
+        <button 
+          onClick={() => setStatus('paused')}
+          className={`control-btn ${status === 'paused' ? 'active' : ''}`}
+          style={{ border: '1px solid #ffffff22', color: '#fff' }}
+        >
+          <Pause size={18} fill={status === 'paused' ? "currentColor" : "none"} /> PAUSE
+        </button>
+        <button 
+          onClick={() => { setProcessed(0); setPalletLoad(0); setStatus('paused'); }}
+          className="control-btn"
+          style={{ border: '1px solid #ffffff22', color: '#94a3b8' }}
+        >
+          <RotateCcw size={18} /> RESET
+        </button>
+      </div>
+
+      <style dangerouslySetInnerHTML={{ __html: `
+        .control-btn {
+          padding: 0.8rem 2rem;
+          border-radius: 12px;
+          font-weight: 800;
+          font-size: 0.8rem;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          cursor: pointer;
+          transition: 0.3s;
+          background: transparent;
+        }
+        .control-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(34, 197, 94, 0.2); }
+        .control-btn.active { box-shadow: 0 0 20px #22c55e66; }
+      `}} />
+    </div>
+  );
 };
 
 // --- COMPONENTE: BRAZO AGUACATERO (AVOCADO MASTER) ---
@@ -248,6 +483,9 @@ const RobotsMaster = () => {
           </div>
         </div>
       </section>
+
+      {/* --- LIVE INDUSTRIAL DASHBOARD --- */}
+      <IndustrialAvocadoDashboard />
 
       {/* --- NUEVA SECCIÓN: INDUSTRIAL AVOCADO ARM --- */}
       <AvocadoMasterSection />
