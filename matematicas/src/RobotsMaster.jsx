@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
 import { Play, Pause, RotateCcw, Activity, ShieldAlert, Cpu, Zap, Box, Thermometer, Gauge } from 'lucide-react';
 import Navbar from './Navbar';
 
@@ -55,16 +54,14 @@ const IndustrialAvocadoDashboard = () => {
           </h2>
           <p style={{ color: '#94a3b8', fontSize: '0.8rem' }}>LOCATION: SECTOR_7_URUPAN</p>
         </div>
-        <AnimatePresence>
-          {alert && (
-            <motion.div 
-              initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }}
-              style={{ background: ROBOT_UI.danger, padding: '0.5rem 1.5rem', borderRadius: '50px', fontSize: '0.8rem', fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: '8px', boxShadow: `0 0 15px ${ROBOT_UI.danger}66` }}
-            >
-              <ShieldAlert size={16} /> {alert}
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {alert && (
+          <div 
+            className="alert-pop"
+            style={{ background: ROBOT_UI.danger, padding: '0.5rem 1.5rem', borderRadius: '50px', fontSize: '0.8rem', fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: '8px', boxShadow: `0 0 15px ${ROBOT_UI.danger}66` }}
+          >
+            <ShieldAlert size={16} /> {alert}
+          </div>
+        )}
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr 1fr', gap: '1.5rem', minHeight: '400px' }}>
@@ -75,7 +72,7 @@ const IndustrialAvocadoDashboard = () => {
           
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '2rem' }}>
             <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: status === 'active' ? '#22c55e' : (status === 'paused' ? ROBOT_UI.warning : ROBOT_UI.danger), boxShadow: `0 0 10px ${status === 'active' ? '#22c55e' : ROBOT_UI.danger}` }}>
-              {status === 'active' && <motion.div animate={{ scale: [1, 1.5, 1], opacity: [1, 0, 1] }} transition={{ repeat: Infinity, duration: 2 }} style={{ width: '100%', height: '100%', borderRadius: '50%', background: '#22c55e' }} />}
+              {status === 'active' && <div className="pulse-indicator" style={{ width: '100%', height: '100%', borderRadius: '50%', background: '#22c55e' }} />}
             </div>
             <span style={{ fontWeight: 'bold', textTransform: 'uppercase' }}>{status}</span>
           </div>
@@ -86,7 +83,7 @@ const IndustrialAvocadoDashboard = () => {
               <span>94%</span>
             </div>
             <div style={{ height: '6px', background: '#1e293b', borderRadius: '10px' }}>
-              <motion.div animate={{ width: '94%' }} style={{ height: '100%', background: '#22c55e', borderRadius: '10px', boxShadow: '0 0 10px #22c55e44' }} />
+              <div style={{ height: '100%', background: '#22c55e', borderRadius: '10px', boxShadow: '0 0 10px #22c55e44', width: '94%', transition: 'width 1s ease' }} />
             </div>
           </div>
 
@@ -108,42 +105,46 @@ const IndustrialAvocadoDashboard = () => {
           <svg viewBox="0 0 400 300" style={{ width: '100%', height: '100%', position: 'relative', zIndex: 1 }}>
             {/* Banda Transportadora */}
             <rect x="50" y="240" width="300" height="10" fill="#1e293b" />
-            <motion.line x1="50" y1="245" x2="350" y2="245" stroke="#22c55e" strokeWidth="2" strokeDasharray="10,10" animate={{ strokeDashoffset: [0, -20] }} transition={{ repeat: Infinity, duration: 1, ease: "linear" }} />
+            <line 
+              x1="50" y1="245" x2="350" y2="245" 
+              stroke="#22c55e" strokeWidth="2" strokeDasharray="10,10" 
+              style={{ animation: status === 'active' ? 'conveyorFlow 1s linear infinite' : 'none' }} 
+            />
 
             {/* Cajas en la banda */}
             {status === 'active' && [0, 1, 2].map(i => (
-              <motion.g key={i} initial={{ x: -50 }} animate={{ x: 450 }} transition={{ repeat: Infinity, duration: 4, delay: i * 1.5, ease: "linear" }}>
+              <g key={i} style={{ animation: 'boxMove 4s linear infinite', animationDelay: `${i * 1.5}s` }}>
                 <rect x="0" y="210" width="30" height="30" fill="rgba(190, 242, 100, 0.2)" stroke="#bef264" />
                 <text x="15" y="230" fill="#bef264" fontSize="6" textAnchor="middle">AVO</text>
-              </motion.g>
+              </g>
             ))}
 
             {/* BRAZO ROBÓTICO NEÓN */}
             <g transform="translate(200, 240)">
-              {/* Base */}
               <rect x="-30" y="0" width="60" height="20" fill="#1e293b" />
               
-              {/* Brazo Principal */}
-              <motion.g animate={{ rotate: status === 'active' ? [-10, 10, -10] : 0 }} transition={{ repeat: Infinity, duration: 3 }}>
+              <g style={{ 
+                transformOrigin: '0 0', 
+                animation: status === 'active' ? 'armSwing 3s ease-in-out infinite' : 'none' 
+              }}>
                 <rect x="-5" y="-100" width="10" height="100" fill={ROBOT_UI.primary} />
-                {/* Mangueras animadas */}
-                <motion.path d="M5 -80 Q 30 -50 5 0" fill="none" stroke={ROBOT_UI.primary} strokeWidth="1" strokeDasharray="4,2" animate={{ strokeDashoffset: [0, 10] }} transition={{ repeat: Infinity, duration: 0.5, ease: "linear" }} opacity="0.5" />
+                <path d="M5 -80 Q 30 -50 5 0" fill="none" stroke={ROBOT_UI.primary} strokeWidth="1" strokeDasharray="4,2" style={{ animation: 'hoseFlow 0.5s linear infinite' }} opacity="0.5" />
                 
-                {/* Articulación 2 */}
                 <g transform="translate(0, -100)">
                   <circle r="12" fill="#000" stroke={ROBOT_UI.warning} strokeWidth="2" />
-                  <motion.g animate={{ rotate: status === 'active' ? [45, 90, 45] : 45 }} transition={{ repeat: Infinity, duration: 3 }}>
+                  <g style={{ 
+                    transformOrigin: '0 0', 
+                    animation: status === 'active' ? 'jointSwing 3s ease-in-out infinite' : 'none' 
+                  }}>
                     <rect x="-4" y="-80" width="8" height="80" fill={ROBOT_UI.primary} />
                     
-                    {/* Gripper / Pinza */}
                     <g transform="translate(0, -80)">
                       <path d="M-15 0 L15 0 M-15 0 L-10 15 M15 0 L10 15" stroke={ROBOT_UI.danger} strokeWidth="3" />
-                      {/* Sensor Laser */}
-                      <motion.line x1="0" y1="0" x2="0" y2="100" stroke={ROBOT_UI.primary} strokeWidth="1" animate={{ opacity: [0, 0.8, 0] }} transition={{ repeat: Infinity, duration: 0.2 }} />
+                      <line x1="0" y1="0" x2="0" y2="100" stroke={ROBOT_UI.primary} strokeWidth="1" style={{ animation: 'laserFlicker 0.2s infinite' }} />
                     </g>
-                  </motion.g>
+                  </g>
                 </g>
-              </motion.g>
+              </g>
             </g>
 
             {/* Tarima (Pallet) */}
@@ -241,6 +242,44 @@ const IndustrialAvocadoDashboard = () => {
         }
         .control-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(34, 197, 94, 0.2); }
         .control-btn.active { box-shadow: 0 0 20px #22c55e66; }
+      `}} />
+
+      <style dangerouslySetInnerHTML={{ __html: `
+        @keyframes alert-pop {
+          from { opacity: 0; transform: translateX(20px); }
+          to { opacity: 1; transform: translateX(0); }
+        }
+        .alert-pop { animation: alert-pop 0.3s ease-out; }
+
+        @keyframes pulse-indicator {
+          0% { transform: scale(1); opacity: 1; }
+          50% { transform: scale(1.5); opacity: 0; }
+          100% { transform: scale(1); opacity: 0; }
+        }
+        .pulse-indicator { animation: pulse-indicator 2s infinite; }
+
+        @keyframes conveyorFlow {
+          from { stroke-dashoffset: 0; }
+          to { stroke-dashoffset: -20; }
+        }
+
+        @keyframes boxMove {
+          from { transform: translateX(-50px); }
+          to { transform: translateX(450px); }
+        }
+
+        @keyframes armSwing {
+          0%, 100% { transform: rotate(-10deg); }
+          50% { transform: rotate(10deg); }
+        }
+
+        @keyframes jointSwing {
+          0%, 100% { transform: rotate(45deg); }
+          50% { transform: rotate(90deg); }
+        }
+
+        @keyframes hoseFlow { from { stroke-dashoffset: 0; } to { stroke-dashoffset: 10; } }
+        @keyframes laserFlicker { 0%, 100% { opacity: 0; } 50% { opacity: 0.8; } }
       `}} />
     </div>
   );
