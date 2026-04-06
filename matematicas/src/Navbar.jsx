@@ -64,46 +64,11 @@ const Navbar = () => {
       items: [ 
         { to: "/pensamiento-logico", label: "Pensamiento Lógico Avanzado", icon: "🧠" },
         { to: "/tablas-verdad", label: "Tablas de Verdad", icon: "📋" },
-        { to: "/bucles", label: "Ciclos y Bucles", icon: "🔁" },
-        { to: "/estructuras-datos", label: "Estructuras", icon: "🏗️" },
-        { to: "/react", label: "React Engine", icon: "⚛️" },
-        { to: "/flask", label: "Flask Alchemist", icon: "🧪" },
-        { to: "/sql", label: "SQL Master", icon: "🗄️" },
-        { to: "/editor", label: "God Editor", icon: "💻" },
-        { to: "/python", label: "Python Power", icon: "🐍" },
-        { to: "/cpp", label: "Arquitectura C++", icon: "⚙️" },
+        { to: "/bucles", label: "Ciclos y Bucles", icon: "🔁" }, 
+        { to: "/estructuras-datos", label: "Estructuras", icon: "🏗️" }, 
       ]
     },
-    {
-      title: "Ciencias Naturales",
-      color: "#22d3ee",
-      items: [
-        { to: "/cuerpo-humano", label: "Cuerpo Humano", icon: "🦴" },
-      ]
-    }
   ];
-
-  const NavLinksContent = () => (
-    <>
-      <div className="nav-link" onClick={toggleMegaMenu} style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '10px', color: isMegaMenuOpen ? 'var(--neon-blue)' : 'inherit', fontSize: '1.1rem', fontWeight: 'bold' }}>
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M3 9h18M3 15h18M3 3h18M3 21h18"/></svg>
-        Explorar Academias
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" style={{ transform: isMegaMenuOpen ? 'rotate(180deg)' : 'none', transition: '0.3s' }}><path d="m6 9 6 6 6-6"/></svg>
-      </div>
-      <Link to="/ingles" className="nav-link" onClick={closeAll}>
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{marginRight: '6px', verticalAlign: 'middle'}}><path d="m5 8 6 6 6-6"/><path d="m4 14 8 8 8-8"/></svg>
-        English Master
-      </Link>
-      <Link to="/react" className="nav-link" onClick={closeAll}>
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{marginRight: '6px', verticalAlign: 'middle'}}><circle cx="12" cy="12" r="2"/><path d="M12 19c-4.4 0-8-1.6-8-3.5s3.6-3.5 8-3.5 8 1.6 8 3.5-3.6 3.5-8 3.5z"/><path d="M12 8c-4.4 0-8-1.6-8-3.5S7.6 1 12 1s8 1.6 8 3.5S16.4 8 12 8z"/></svg>
-        Web Dev
-      </Link>
-      <Link to="/sql" className="nav-link" onClick={closeAll}>
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{marginRight: '6px', verticalAlign: 'middle'}}><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/><line x1="7" y1="10" x2="7" y2="19"/><line x1="17" y1="10" x2="17" y2="19"/></svg>
-        SQL Master
-      </Link>
-    </>
-  );
 
   return (
     <div className="nav-wrapper">
@@ -114,10 +79,6 @@ const Navbar = () => {
           </svg>
           <span>EDU<span style={{color: 'var(--neon-blue)'}}>NEON</span></span>
         </Link>
-        
-        <div className="nav-links">
-          <NavLinksContent />
-        </div>
 
         <div className="nav-actions">
           <button className="btn-login hide-mobile">
@@ -130,28 +91,6 @@ const Navbar = () => {
           </button>
         </div>
 
-        {/* --- MEGA MENÚ: PANEL DESPLEGABLE --- */}
-        <div className={`mega-menu-dropdown ${isMegaMenuOpen ? 'active' : ''}`}>
-          <div className="mega-menu-header-box">
-            <h2 className="gradient-text mega-title">Explora el Futuro</h2>
-            <p className="mega-subtitle">Selecciona tu ruta de aprendizaje y domina la materia.</p>
-          </div>
-          <div className="mega-menu-grid-styled">
-            {categories.map((cat, idx) => (
-              <div key={idx} className="cat-section">
-                <h3 style={{ color: cat.color }}>{cat.title}</h3>
-                <div className="items-container">
-                  {cat.items.map((item, iIdx) => (
-                    <Link key={iIdx} to={item.to} onClick={closeAll} className="mega-item">
-                      <span className="icon-box" style={{ background: `${cat.color}15`, color: cat.color }}>{item.icon}</span>
-                      <span className="label">{item.label}</span>
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
       </nav>
 
       {/* --- MENÚ MÓVIL (HAMBURGUESA) --- */}
@@ -161,8 +100,7 @@ const Navbar = () => {
             <span className="logo">EDU<span style={{color: 'var(--neon-blue)'}}>NEON</span></span>
           </div>
           <div className="mobile-nav-content">
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
-              <NavLinksContent />
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '30px', paddingTop: '20px' }}>
               <div style={{ height: '1px', background: 'rgba(255,255,255,0.1)' }}></div>
               {categories.map((cat, idx) => (
                 <div key={idx}>
@@ -189,158 +127,12 @@ const Navbar = () => {
           z-index: 1000;
         }
 
-        .nav-actions {
-          display: flex;
-          align-items: center;
-          gap: 15px;
-        }
-
         .gradient-text {
           background: linear-gradient(90deg, #ffffff, var(--neon-blue));
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           font-weight: 900;
         }
-
-        .mega-menu-header-box {
-          margin-bottom: 3rem;
-          border-bottom: 1px solid rgba(255,255,255,0.05);
-          padding-bottom: 2rem;
-          text-align: left;
-        }
-
-        .mega-title {
-          font-size: 4rem;
-          letter-spacing: -2px;
-          margin-bottom: 0.5rem;
-          line-height: 1;
-        }
-
-        .mega-subtitle {
-          color: #94a3b8;
-          font-size: 1.5rem;
-          font-weight: 400;
-        }
-
-        .mega-menu-dropdown {
-          position: absolute;
-          top: 100%;
-          left: 0;
-          width: 100%;
-          background: rgba(2, 6, 23, 0.98);
-          backdrop-filter: blur(25px);
-          border-bottom: 1px solid rgba(255,255,255,0.1);
-          padding: 3.5rem 8%;
-          visibility: hidden;
-          opacity: 0;
-          transform: translateY(-20px);
-          max-height: 85vh;
-          overflow-y: auto;
-          transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-          box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-          z-index: -1;
-        }
-
-        .mega-menu-dropdown.active {
-          visibility: visible;
-          opacity: 1;
-          transform: translateY(0);
-        }
-
-        /* Scrollbar Personalizado Neón para Desktop */
-        .mega-menu-dropdown::-webkit-scrollbar {
-          width: 6px;
-        }
-        
-        .mega-menu-dropdown::-webkit-scrollbar-track {
-          background: rgba(0,0,0,0.2);
-        }
-        .mega-menu-dropdown::-webkit-scrollbar-thumb {
-          background: var(--neon-blue);
-          border-radius: 10px;
-        }
-
-        .mega-menu-grid-styled {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-          gap: 40px;
-          padding-bottom: 4rem; /* Espacio extra para que respire al final */
-        }
-
-        @media (max-width: 768px) {
-          .mega-menu-grid-styled {
-            grid-template-columns: 1fr;
-            gap: 20px;
-          }
-        }
-
-        .cat-section h3 {
-          font-size: 0.8rem;
-          text-transform: uppercase;
-          letter-spacing: 2px;
-          margin-bottom: 20px;
-          border-bottom: 1px solid rgba(255,255,255,0.05);
-          padding-bottom: 10px;
-          font-weight: 800;
-        }
-
-        .mega-item {
-          text-decoration: none;
-          display: flex;
-          align-items: center;
-          gap: 15px;
-          padding: 12px;
-          border-radius: 12px;
-          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-          color: #94a3b8;
-        }
-
-        .mega-item:hover {
-          background: rgba(255, 255, 255, 0.05);
-          color: white !important;
-          transform: translateX(10px);
-        }
-
-        .icon-box {
-          width: 40px;
-          height: 40px;
-          min-width: 40px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          border-radius: 10px;
-          font-size: 1.2rem;
-          transition: 0.3s;
-        }
-
-        .mega-item:hover .icon-box {
-          transform: scale(1.1);
-          box-shadow: 0 0 15px currentColor;
-        }
-
-        .mega-item .label {
-          font-size: 1rem;
-          font-weight: 500;
-          transition: 0.3s;
-        }
-
-        .mega-item:hover .label {
-          color: white;
-          text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-        }
-        
-        .mobile-menu-btn { display: none; }
-        
-        @media (max-width: 1200px) {
-          .mega-menu-grid-styled { grid-template-columns: repeat(2, 1fr); }
-        }
-
-        @media (max-width: 1024px) {
-          .nav-links, .hide-mobile { display: none; }
-          .mobile-menu-btn { display: block; }
-          .mega-menu-dropdown { display: none; }
-        }
-
         .navbar {
           display: flex;
           justify-content: space-between;
@@ -352,15 +144,22 @@ const Navbar = () => {
           width: 100%;
           position: relative;
           z-index: 10;
+          gap: 20px; /* Add some gap between elements */
         }
         
-        .nav-links { display: flex; gap: 2.5rem; align-items: center; }
-        .nav-link { color: #94a3b8; text-decoration: none; font-weight: 600; transition: 0.3s; white-space: nowrap; }
-        .nav-link:hover { color: white; }
+        .nav-actions {
+          display: flex;
+          align-items: center;
+          gap: 15px;
+        }
+
+        .nav-links, .hide-mobile { /* These elements are now effectively removed from the main navbar flow */
+          display: none; 
+        }
 
         /* Hamburger Animado */
         .hamburger-btn {
-          display: none;
+          display: block; /* Always show hamburger */
           width: 30px;
           height: 22px;
           position: relative;
@@ -418,11 +217,6 @@ const Navbar = () => {
         }
         .mobile-overlay.active .mobile-drawer { transform: translateX(0); }
         .mobile-drawer-header { position: absolute; top: 30px; left: 30px; }
-
-        @media (max-width: 1024px) {
-          .hamburger-btn { display: block; }
-          .nav-links, .hide-mobile { display: none; }
-        }
       `}} />
     </div>
   );
