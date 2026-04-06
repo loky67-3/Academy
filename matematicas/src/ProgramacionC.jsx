@@ -780,7 +780,7 @@ const ProgramacionC = () => {
           <p style={{ fontSize: '1.1rem', lineHeight: '1.6' }}>
             1. Usamos <b>struct</b> para crear un objeto "Cuenta".<br/>
             2. La función <b>depositar</b> usa un puntero <code>*c</code>. Esto es vital: si no usamos punteros, C crearía una copia de la cuenta y el dinero ¡nunca llegaría al saldo original!<br/>
-            3. El operador <code>-></code> es el que C usa para entrar a las propiedades de un puntero.
+            3. El operador <code> `{'>'}` </code> es el que C usa para entrar a las propiedades de un puntero.
           </p>
         </div>
       </section>
