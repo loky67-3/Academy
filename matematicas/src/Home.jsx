@@ -152,7 +152,7 @@ const SubjectShowcase = ({ title, description, image, color, link, type }) => (
       backgroundImage: `linear-gradient(to bottom, transparent, #020617), url(${image})`, 
       backgroundSize: 'cover', 
       backgroundPosition: 'center',
-      position: 'relative',
+      position: 'absolute',
       display: 'flex',
       alignItems: 'flex-end',
       padding: '20px'
